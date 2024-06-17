@@ -1,4 +1,4 @@
-# StructAlign-evaluator
+# StructAlign-evaluator (in progress)
 Benchmarking protein structure alignment algorithms on several databases
 * SCOP200: **200** non-homologous proteins from the SCOP database used in the TM-align paper (TM-score)
 * Malisam: **130** difficult non-homologous proteins in different families from SCOP (Accuracy, TM-score)
