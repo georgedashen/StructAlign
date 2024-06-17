@@ -17,7 +17,7 @@ Benchmarking protein structure alignment algorithms on several databases
 Before running any codes, please download all databases for benchmarking following the instruction in the `database` folder.
 
 ## Accuracy evaluation
-First retrieve the alignment pattern from the result and arrange it as the following:
+First retrieve the alignment pattern from the alignment result from any alignment tools, and then arrange it as the following:
 ```
 ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe-----------graMYEPIHGS
 -ftyEEVLAFEERLEREAeapSLYTVEHKVDfpVEHCYEKAL--GAEGVEEVYRRGLAQRhalpfeadGVVLKLDDltlwgelgytaraprFALAYKFP
