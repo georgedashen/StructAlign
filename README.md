@@ -1,9 +1,9 @@
 # StructAlign-evaluator
 Benchmarking protein structure alignment algorithms on several databases
-* SCOP200: 200 non-homologous proteins from the SCOP database used in the TM-align paper (TM-score)
-* Malisam: 130 difficult non-homologous proteins in different families from SCOP (Accuracy, TM-score)
-* Malidup: 241 difficult proteins with internal duplicated structures (Accuracy, TM-score)
-* HOMSTRAD: 590 single-domain non-homologous protein structure alignments (Accuracy, TM-score)
+* SCOP200: **200** non-homologous proteins from the SCOP database used in the TM-align paper (TM-score)
+* Malisam: **130** difficult non-homologous proteins in different families from SCOP (Accuracy, TM-score)
+* Malidup: **241** difficult proteins with internal duplicated structures (Accuracy, TM-score)
+* HOMSTRAD: **590** single-domain non-homologous protein structure alignments (Accuracy, TM-score)
 * CAFA3-MF: molecular function prediction using homology search (Fmax, AUPR)
 * ?, phylogeny dataset, reconstruct evolutionary distances
 
