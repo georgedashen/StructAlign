@@ -23,7 +23,7 @@ ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe---
 -ftyEEVLAFEERLEREAeapSLYTVEHKVDfpVEHCYEKAL--GAEGVEEVYRRGLAQRhalpfeadGVVLKLDDltlwgelgytaraprFALAYKFP
 ```
 
-Then use run the following script to calculate the accuracy given a ground truth alignment:
+Then run the following code to calculate the accuracy given a ground truth alignment:
 ```
 python accuracy.py <groundtruth.ali> <predict.ali>
 ```
@@ -33,5 +33,20 @@ python accuracy.py <groundtruth.ali> <predict.ali>
 The outputs contain accuracy, recall, and precision score. When there are lowercase letters in the `<predict.ali>` file, which stand for unaligned or low-confident positions, three additional scores: accuracy, recall, and precision are calculated by taking the confidence into account. Noted that letters in the `<groundtruth.ali>` file are all uppercase, and `<predict.ali>` file with only uppercase output results in identical accuracy, recall and precision scores.
 
 ## TM-score evaluation
-First download **TM-align** and compile it according to the intruction on [Zhang's lab](https://zhanggroup.org/TM-align/) website.
+First download **TM-align** and compile it according to the intruction on [Zhang's lab](https://zhanggroup.org/TM-align/) website. Add the path where TM-align is in to the environment so that it can be called directly.
 
+Use the following code to calculate the tm-score given two pdb files and an alignment file in fasta format:
+```
+TMalign <query.pdb> <target.pdb> -I <result.ali.fasta>
+```
+
+You may need to manually edit the provided `*.ali` file into `fasta` format which looks like:
+```
+>aln1
+ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe-----------graMYEPIHGS
+>aln2
+-ftyEEVLAFEERLEREAeapSLYTVEHKVDfpVEHCYEKAL--GAEGVEEVYRRGLAQRhalpfeadGVVLKLDDltlwgelgytaraprFALAYKFP
+```
+
+Then the outputs contain TM-scores normalized by query and target protein, and also the alignment pattern.
+![TMscore output](tmscore.png)
