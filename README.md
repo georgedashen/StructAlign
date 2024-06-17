@@ -28,6 +28,8 @@ Then use run the following script to calculate the accuracy given a ground truth
 python accuracy.py <groundtruth.ali> <predict.ali>
 ```
 
+![accuracy output](accuracy.png)
+
 The outputs contain accuracy, recall, and precision score. When there are lowercase letters in the `<predict.ali>` file, which stand for unaligned or low-confident positions, three additional scores: accuracy, recall, and precision are calculated by taking the confidence into account. Noted that letters in the `<groundtruth.ali>` file are all uppercase, and `<predict.ali>` file with only uppercase output results in identical accuracy, recall and precision scores.
 
 ## TM-score evaluation
