@@ -1,60 +1,24 @@
 # on work:
-# the tm, dali, manual alignment patterns only include the ground truth region
-# while the provided ground truth has start and end positions
+# the tm, dali, manual alignments in *ali files only include the ground truth region
+# while the provided ground truth *aln file has start and end positions
 
 import sys
 import numpy as np
 
-gtfile=sys.argv[1]
+gtfile=sys.argv[1] #file ended with manual.ali
 infile=sys.argv[2]
 
 #gt='d1a05a_d1dgsa3.aln'
-with open(gtfile,'r') as file:
-    content=file.read().strip()
-
-patterns=content.split('\n\n')
-patterns=patterns[1:]
-
+b=np.loadtxt(gtfile,dtype=str,delimiter='\n')
 gt={}
-qc=tc=1 #results not start with '-'
-for pattern in patterns:
-    lines=pattern.strip().split('\n')
-    first=lines[0].split('|')[1]
-    q_offset=np.array(lines[0].split(' '))
-    q_offset=q_offset[q_offset!=''][2]
-    q_offset=q_offset.split('|')[0]
-    q_offset=len(q_offset)
-    #qc=int(lines[0].split('  ')[1])+offset
-    #for results with only gt aligned regions
-    qc+=q_offset
-
-    second=lines[2].split('|')[1]
-    t_offset=np.array(lines[2].split(' '))
-    t_offset=t_offset[t_offset!=''][2]
-    t_offset=t_offset.split('|')[0]
-    t_offset=len(t_offset)
-    #tc=int(lines[2].split('  ')[1])+offset
-    #for results with only gt aligned regions
-    tc+=t_offset
-
-    for q,t in zip(first,second):
-        if q!='-':
-            gt[str(qc)+q]=str(tc)+t
-            qc+=1
-        if t!='-':
-            tc+=1
-
-    q_offset=lines[0].split('|')[2]
-    q_offset=q_offset.split(' ')[0]
-    q_offset=len(q_offset)
-    t_offset=lines[2].split('|')[2]
-    t_offset=t_offset.split(' ')[0]
-    t_offset=len(t_offset)
-    qc+=q_offset
-    tc+=t_offset
-
-#print(gt)
-#print(gt.keys())
+qc=1 #results not start with '-'
+tc=0
+for q,t in zip(b[0],b[1]):
+    if t!='-':
+        tc+=1
+    if q!='-':
+        gt[str(qc)+q.upper()]=str(tc)+t.upper()
+        qc+=1
 
 #a=np.loadtxt('d1a05a_d1dgsa3.tm.ali',dtype=str,delimiter='\n')
 a=np.loadtxt(infile,dtype=str,delimiter='\n')
