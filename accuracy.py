@@ -8,11 +8,20 @@ import numpy as np
 gtfile=sys.argv[1] #file ended with manual.ali
 infile=sys.argv[2]
 
-#gt='d1a05a_d1dgsa3.aln'
 b=np.loadtxt(gtfile,dtype=str,delimiter='\n')
 gt={}
 qc=1 #results not start with '-'
 tc=0
+
+# make sure to set the smaller protein as the query protein
+swap = False
+q_len = len(b[0].replace('-',''))
+t_len = len(b[1].replace('-',''))
+if q_len > t_len:
+    swap = True
+
+if swap:
+    b[0],b[1] = b[1],b[0]
 for q,t in zip(b[0],b[1]):
     if t!='-':
         tc+=1
@@ -24,10 +33,11 @@ for q,t in zip(b[0],b[1]):
 a=np.loadtxt(infile,dtype=str,delimiter='\n')
 pred={}
 pred_conf={}
-qc=1
-#results could start with '-'
+qc=1 #results could start with '-'
 tc=0
 
+if swap:
+    a[0],a[1] = a[1],a[0]
 for q,t in zip(a[0],a[1]):
     if t!='-':
         tc+=1
