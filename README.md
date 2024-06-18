@@ -33,7 +33,11 @@ python accuracy.py <groundtruth.ali> <predict.ali>
 The outputs contain accuracy, recall, and precision score. When there are lowercase letters in the `<predict.ali>` file, which stand for unaligned or low-confident positions, three additional scores: accuracy, recall, and precision are calculated by taking the confidence into account. Noted that letters in the `<groundtruth.ali>` file are all uppercase, and `<predict.ali>` file with only uppercase output results in identical accuracy, recall and precision scores.
 
 ## TM-score evaluation
-First download **TM-align** and compile it according to the intruction on [Zhang's lab](https://zhanggroup.org/TM-align/) website. Add the path where TM-align is in to the environment so that it can be called directly.
+We provide the downloaded **TM-align** source file here and please follow the script below to compile it. Add the path where TM-align is in to the environment so that it can be called directly. Detailed intructions of TM-align are on [Zhang's lab](https://zhanggroup.org/TM-align/) website.
+```
+g++ -static -O3 -ffast-math -lm -o TMalign TMalign.cpp
+export PATH=$PATH:$(pwd) # you can add the path directly into your .bashrc configure file
+```
 
 Use the following code to calculate the tm-score given two pdb files and an alignment file in fasta format:
 ```
