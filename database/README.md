@@ -1,3 +1,5 @@
+The SCOP200 is downloaded from the [Zhang's lab](https://zhanggroup.org/TM-align/) website. The SCOP140 is downloaded according to the instructions on the [Dali](http://ekhidna2.biocenter.helsinki.fi/dali/README.benchmark) website.
+
 The Malisam and Malidup databases are downloaded from http://prodata.swmed.edu/malisam/ and http://prodata.swmed.edu/malidup/, respectively. (see the [DeepBLAST](https://github.com/flatironinstitute/deepblast) github)
 
 Extract the compressed files and rename them into folder `Malisam` and `Malidup`, respectively.
