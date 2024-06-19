@@ -59,15 +59,12 @@ The outputs contain TM-scores normalized by query and target protein, and also t
 
 ![TMscore output](tmscore.png)
 
-## Results
-
-### Malisam
-
-![accuracy_bench](accuracy_bench.png)
-
-![tm_score_bench](tm_score_bench.png)
-
 Our pipeline extracts the TM-score and RSMD from the TM-align result file, and calculate the Lalign using the provided `*ali` file by counting the uppercase letters instead.
 
 ![tmscore_result](tmscore_database.png)
 
+## Results
+
+### Malisam
+
+![accuracy_bench](accuracy_bench.png) ![tm_score_bench](tm_score_bench.png)
