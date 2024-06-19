@@ -29,9 +29,11 @@ Then run the following code to calculate the accuracy given a ground truth align
 python accuracy.py <groundtruth.ali> <predict.ali>
 ```
 
-![accuracy output](accuracy.png)
+![accuracy example](accuracy.png)
 
-The outputs contain accuracy, recall, and precision score. When there are lowercase letters in the `<predict.ali>` file, which stand for unaligned or low-confident positions, three additional scores: accuracy, recall, and precision are calculated by taking the confidence into account. Noted that letters in the `<groundtruth.ali>` file are all uppercase, and `<predict.ali>` file with only uppercase output results in identical accuracy, recall and precision scores.
+The outputs contain precision, recall, and accuracy score. Lowercase letters in the `<predict.ali>` file stand for unaligned or low-confident positions. Noted that letters in the `<groundtruth.ali>` file are all uppercase, and `<predict.ali>` file with only uppercase output results in identical accuracy, recall and precision scores.
+
+![accuracy_result](accuracy_database.png)
 
 ## TM-score evaluation
 We provide the downloaded **TM-align** source file here and please follow the script below to compile it. Add the path where TM-align is in to the environment so that it can be called directly. Detailed intructions of TM-align are on [Zhang's lab](https://zhanggroup.org/TM-align/) website.
@@ -40,12 +42,7 @@ g++ -static -O3 -ffast-math -lm -o TMalign TMalign.cpp
 export PATH=$PATH:$(pwd) # you can add the path directly into your .bashrc configure file
 ```
 
-Use the following code to calculate the tm-score given two pdb files and an alignment file in fasta format:
-```
-TMalign <query.pdb> <target.pdb> -I <result.ali.fasta>
-```
-
-You may need to manually edit the provided `*.ali` file into `fasta` format which looks like:
+Before running TM-align you need to manually edit the provided `*.ali` file into `fasta` format which looks like the follows, and this file will be automatically generated in our pipeline.
 ```
 >aln1
 ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe-----------graMYEPIHGS
@@ -53,5 +50,16 @@ ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe---
 -ftyEEVLAFEERLEREAeapSLYTVEHKVDfpVEHCYEKAL--GAEGVEEVYRRGLAQRhalpfeadGVVLKLDDltlwgelgytaraprFALAYKFP
 ```
 
-Then the outputs contain TM-scores normalized by query and target protein, and also the alignment pattern.
+Use the following code to calculate the tm-score given two pdb files and an alignment file in fasta format:
+```
+TMalign <query.pdb> <target.pdb> -I <result.ali.fasta>
+```
+
+The outputs contain TM-scores normalized by query and target protein, and also the alignment patternoutput looks as follows:
+
 ![TMscore output](tmscore.png)
+
+Our pipeline extracts the TM-score and RSMD from the TM-align result file, and calculate the Lalign using the provided `*ali` file by counting the uppercase letters instead.
+
+![tmscore_result](tmscore_database.png)
+
