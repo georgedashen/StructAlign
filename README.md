@@ -66,7 +66,7 @@ Our pipeline extracts the TM-score and RSMD from the TM-align result file, and c
 ## 3. Classification
 We adopt the classification pipeline used in DaliLite to classify 140 proteins from SCOP against 15211 pdbs from SCOPe 2.07.
 
-![classification_gt](classification_query.png | height = 600px)
+![classification_gt](classification_query.png)
 
 ![classification_gt](classification_gt.png)
 
@@ -76,4 +76,7 @@ We adopt the classification pipeline used in DaliLite to classify 140 proteins f
 
 ### Malisam
 
-![accuracy_bench](accuracy_bench.png) ![tm_score_bench](tm_score_bench.png)
+![accuracy_bench](accuracy_bench.png) 
+<img src='accuracy_bench.png', width=60>
+
+![tm_score_bench](tm_score_bench.png)
