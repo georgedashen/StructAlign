@@ -17,7 +17,7 @@ Benchmarking protein structure alignment algorithms on several databases
 ## Database download
 Before running any codes, please download all databases for benchmarking following the instruction in the `database` folder.
 
-## Accuracy evaluation
+## 1. Accuracy evaluation
 First retrieve the alignment pattern from the alignment result from any alignment tools, and then arrange it as the following:
 ```
 ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe-----------graMYEPIHGS
@@ -35,7 +35,7 @@ The outputs contain precision, recall, and accuracy score. Lowercase letters in 
 
 ![accuracy_result](accuracy_database.png)
 
-## TM-score evaluation
+## 2. TM-score evaluation
 We provide the downloaded **TM-align** source file here and please follow the script below to compile it. Add the path where TM-align is in to the environment so that it can be called directly. Detailed intructions of TM-align are on [Zhang's lab](https://zhanggroup.org/TM-align/) website.
 ```
 g++ -static -O3 -ffast-math -lm -o TMalign TMalign.cpp
@@ -62,6 +62,11 @@ The outputs contain TM-scores normalized by query and target protein, and also t
 Our pipeline extracts the TM-score and RSMD from the TM-align result file, and calculate the Lalign using the provided `*ali` file by counting the uppercase letters instead.
 
 ![tmscore_result](tmscore_database.png)
+
+## 3. Classification
+We adopt the classification pipeline used in DaliLite to classify 140 proteins from SCOP against 15211 pdbs from SCOPe 2.07.
+
+![]
 
 ## Results
 
