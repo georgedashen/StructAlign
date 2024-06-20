@@ -17,7 +17,7 @@ Benchmarking protein structure alignment algorithms on several databases
 ## Database download
 Before running any codes, please download all databases for benchmarking following the instruction in the `database` folder.
 
-## 1. Accuracy evaluation
+## 1. Alignment accuracy evaluation
 First retrieve the alignment pattern from the alignment result from any alignment tools, and then arrange it as the following:
 ```
 ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe-----------graMYEPIHGS
@@ -63,7 +63,7 @@ Our pipeline extracts the TM-score and RSMD from the TM-align result file, and c
 
 ![tmscore_result](tmscore_database.png)
 
-## 3. Classification
+## 3. Classification accuracy evaluation
 We adopt the classification pipeline used in DaliLite to classify 140 proteins from SCOP against 15211 pdbs from SCOPe 2.07.
 
 ![classification_gt](classification_query.png)
