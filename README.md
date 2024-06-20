@@ -1,6 +1,6 @@
 # StructAlign-evaluator (in progress)
 Benchmarking protein structure alignment algorithms on several databases
-* SCOP140: **140** proteins from the SCOP database and search against SCOPe 2.07 database for classification (Accuracy)
+* SCOP140: **140** proteins from the SCOP database and search against **15211** SCOPe 2.07 database for classification (Accuracy)
 * SCOP200: **200** non-homologous proteins from the SCOP database used in the TM-align paper (TM-score)
 * Malisam: **130** difficult non-homologous proteins in different families from SCOP (Accuracy, TM-score)
 * Malidup: **241** difficult proteins with internal duplicated structures (Accuracy, TM-score)
