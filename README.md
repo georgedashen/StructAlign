@@ -77,6 +77,6 @@ We adopt the classification pipeline used in DaliLite to classify 140 proteins f
 ### Malisam
 
 ![accuracy_bench](accuracy_bench.png) 
-<img src="accuracy_bench.png" width="60">
+<img src="accuracy_bench.png" width="1200">
 
 ![tm_score_bench](tm_score_bench.png)
