@@ -5,7 +5,7 @@ Benchmarking protein structure alignment algorithms on several databases
 * Malisam: **130** difficult non-homologous proteins in different families from SCOP (Accuracy, TM-score)
 * Malidup: **241** difficult proteins with internal duplicated structures (Accuracy, TM-score)
 * HOMSTRAD: **590** single-domain non-homologous protein structure alignments (Accuracy, TM-score)
-* CAFA3-MF: **1137** proteins for molecular function prediction against 36008 proteins using homology search (Fmax, AUPR)
+* CAFA3-MF: **1137** proteins for molecular function prediction against **36008** proteins using homology search (Fmax, AUPR)
 * ?, phylogeny dataset, reconstruct evolutionary distances
 
 ## Environment
