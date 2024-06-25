@@ -29,11 +29,11 @@ Then run the following code to calculate the accuracy given a ground truth align
 python accuracy.py <groundtruth.ali> <predict.ali>
 ```
 
-![accuracy example](accuracy.png)
+![accuracy example](img/accuracy.png)
 
 The outputs contain precision, recall, and accuracy score. Lowercase letters in the `<predict.ali>` file stand for unaligned or low-confident positions. Noted that letters in the `<groundtruth.ali>` file are all uppercase, and `<predict.ali>` file with only uppercase output results in identical accuracy, recall and precision scores.
 
-![accuracy_result](accuracy_database.png)
+![accuracy_result](img/accuracy_database.png)
 
 ## 2. TM-score evaluation
 We provide the downloaded **TM-align** source file here and please follow the script below to compile it. Add the path where TM-align is in to the environment so that it can be called directly. Detailed intructions of TM-align are on [Zhang's lab](https://zhanggroup.org/TM-align/) website.
@@ -57,18 +57,18 @@ TMalign <query.pdb> <target.pdb> -I <result.ali.fasta>
 
 The outputs contain TM-scores normalized by query and target protein, and also the alignment patternoutput looks as follows:
 
-![TMscore output](tmscore.png)
+![TMscore output](img/tmscore.png)
 
 Our pipeline extracts the TM-score and RSMD from the TM-align result file, and calculate the Lalign using the provided `*ali` file by counting the uppercase letters instead.
 
-![tmscore_result](tmscore_database.png)
+![tmscore_result](img/tmscore_database.png)
 
 ## 3. Classification accuracy evaluation
 We adopt the classification pipeline used in DaliLite to classify 140 proteins from SCOP against 15211 pdbs from SCOPe 2.07.
 
-![classification_gt](classification_query.png)
+![classification_gt](img/classification_query.png)
 
-![classification_gt](classification_gt.png)
+![classification_gt](img/classification_gt.png)
 
 
 
@@ -76,6 +76,12 @@ We adopt the classification pipeline used in DaliLite to classify 140 proteins f
 
 ### Malisam
 
-<img src="accuracy_bench.png" width="800">
+<img src="img/accuracy_Malisam.png" width="800">
 
-![tm_score_bench](tm_score_bench.png)
+![tm_score_bench](img/tm_score_Malisam.png)
+
+### Malidup
+
+<img src="img/accuracy_Malidup.png" width="800">
+
+![tm_score_bench](img/tm_score_Malidup.png)
