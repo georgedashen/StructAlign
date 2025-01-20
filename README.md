@@ -1,12 +1,10 @@
-# StructAlign-evaluator (in progress)
-Benchmarking protein structure alignment algorithms on several databases
-* SCOP140: **140** proteins from the SCOP database and search against **15211** SCOPe 2.07 database for classification (Accuracy)
-* SCOP200: **200** non-homologous proteins from the SCOP database used in the TM-align paper (TM-score)
+# StructAlign-evaluator
+Benchmarking protein structure alignment algorithms on several downstream tasks, see our preliminary results and reports on BioRix
 * Malisam: **130** difficult non-homologous proteins in different families from SCOP (Accuracy, TM-score)
 * Malidup: **241** difficult proteins with internal duplicated structures (Accuracy, TM-score)
-* HOMSTRAD: **590** single-domain non-homologous protein structure alignments (Accuracy, TM-score)
-* CAFA3-MF: **1137** proteins for molecular function prediction against **36008** proteins using homology search (Fmax, AUPR)
-* ?, phylogeny dataset, reconstruct evolutionary distances
+* SCOP140 (homology detection): **140** proteins from the SCOP database and search against **15211** SCOPe 2.07 database for classification (Fmax)
+* SwissTree (phylogeny reconstruction): **ST001-ST010** trees, each with proteins ranging from **25** to **131** (RF distance, TCS score)
+* CAFA3-MF (function inference): **1137** proteins for molecular function prediction against **32421** proteins using homology search (Fmax, Smin, AUPR)
 
 ## Environment
 ```
@@ -17,7 +15,9 @@ Benchmarking protein structure alignment algorithms on several databases
 ## Database download
 Before running any codes, please download all databases for benchmarking following the instruction in the `database` folder.
 
-## 1. Alignment accuracy evaluation
+## 1. Alignment quality evaluation (accuracy, TM-score)
+
+### accuracy evaluation
 First retrieve the alignment pattern from the alignment result from any alignment tools, and then arrange it as the following:
 ```
 ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe-----------graMYEPIHGS
@@ -35,7 +35,7 @@ The outputs contain precision, recall, and accuracy score. Lowercase letters in 
 
 ![accuracy_result](img/accuracy_database.png)
 
-## 2. TM-score evaluation
+### TM-score evaluation
 We provide the downloaded **TM-align** source file here and please follow the script below to compile it. Add the path where TM-align is in to the environment so that it can be called directly. Detailed intructions of TM-align are on [Zhang's lab](https://zhanggroup.org/TM-align/) website.
 ```
 g++ -static -O3 -ffast-math -lm -o TMalign TMalign.cpp
@@ -63,13 +63,18 @@ Our pipeline extracts the TM-score and RSMD from the TM-align result file, and c
 
 ![tmscore_result](img/tmscore_database.png)
 
-## 3. Classification accuracy evaluation
-We adopt the classification pipeline used in DaliLite to classify 140 proteins from SCOP against 15211 pdbs from SCOPe 2.07.
+## 2. Homology detection accuracy evaluation (Fmax)
+We adopt the classification pipeline used in DaliLite to classify 140 proteins from SCOP against 15211 pdbs from SCOPe 2.07. Binary classification for all protein pairs between query set and target set.
 
 ![classification_gt](img/classification_query.png)
 
 ![classification_gt](img/classification_gt.png)
 
+## 3. Phylogeny reconstruction quality evaluation (RF distance, TCS score)
+We adopt the workflow used in Foldtree to investigate the performance of different tools on predicting evolutionary hierarchies. RF distance is used to quantify the topological difference between the predicted tree and the ground-truth species tree.
+
+## 4. Function inference
+A multi-label multi-class classification task. The GO terms of the target protein are transfered to the query protein, using the structural similarity value as the coefficient for all terms.
 
 
 ## Results
