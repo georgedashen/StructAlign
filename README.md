@@ -1,5 +1,5 @@
 # StructAlign-evaluator
-Benchmarking protein structure alignment algorithms on several downstream tasks, see our preliminary results and reports on BioRix
+Benchmarking protein structure alignment algorithms on several downstream tasks, see our preliminary results and reports on bioRxiv
 * Malisam: **130** difficult non-homologous proteins in different families from SCOP (Accuracy, TM-score)
 * Malidup: **241** difficult proteins with internal duplicated structures (Accuracy, TM-score)
 * SCOP140 (homology detection): **140** proteins from the SCOP database and search against **15211** SCOPe 2.07 database for classification (Fmax)
