@@ -1,4 +1,4 @@
-The SCOP200 is downloaded from the [Zhang's lab](https://zhanggroup.org/TM-align/) website. The SCOP140 is downloaded according to the instructions on the [Dali](http://ekhidna2.biocenter.helsinki.fi/dali/README.benchmark) website.
+## Malidup and Malisam
 
 The Malisam and Malidup databases are downloaded from http://prodata.swmed.edu/malisam/ and http://prodata.swmed.edu/malidup/, respectively. (see the [DeepBLAST](https://github.com/flatironinstitute/deepblast) github)
 
@@ -11,3 +11,12 @@ For DaliLite to work appropriately on createing data, edit the `import.pl` scrip
 # original: system('mkdir $dir')
 system("mkdir $dir")
 ```
+
+## SCOP140 (homology detection)
+The SCOP140 is downloaded according to the instructions on the [Dali](http://ekhidna2.biocenter.helsinki.fi/dali/README.benchmark) website.
+
+## SwissTree (phylogeny reconstruction)
+Data used in this study is provided in the **SwissTree.tar.gz** compressed file. You can also find the data in the [foldtree](https://github.com/DessimozLab/fold_tree) github page.
+
+## CAFA3-MF (function inference)
+Data is provided in the CAFA3-MF compressed file. You can also find the data as described in the [TEMPROT](https://doi.org/10.1186/s12859-023-05375-0) paper or on [zenodo](https://zenodo.org/records/7409660).
