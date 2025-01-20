@@ -30,8 +30,16 @@ Download tools or methods you need to reproduce the results in our study. More i
 * [Foldseek](https://github.com/steineggerlab/foldseek)
 
 ## 1. Alignment quality evaluation (accuracy, TM-score)
+For each tool, find the corresponding `*_Malidup.py` or `*_Malisam.py` script to generate results. Then use `concatResult.py` to generate a final csv file for accuracy or reference-independent metrics such as TM-scores and RMSD.
+```
+# make sure you are in the folder that containing the Malidup or Malisam data folder
+# Using DeepAlign as the example:
+python deepalign_Malidup.py
+python concatResult.py Malidup Malidup.accuracy accuracy
+python concatResult.py Malidup Malidup.tmscore tmscore
+```
 
-### accuracy evaluation
+### Accuracy evaluation
 First retrieve the alignment pattern from the alignment result from any alignment tools, and then arrange it as the following:
 ```
 ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe-----------graMYEPIHGS
@@ -50,13 +58,13 @@ The outputs contain precision, recall, and accuracy score. Lowercase letters in 
 ![accuracy_result](img/accuracy_database.png)
 
 ### TM-score evaluation
-We provide the downloaded **TM-align** source file here and please follow the script below to compile it. Add the path where TM-align is in to the environment so that it can be called directly. Detailed intructions of TM-align are on [Zhang's lab](https://zhanggroup.org/TM-align/) website.
+We provide the downloaded **TMalign** source file here and please follow the script below to compile it. Add the path where TM-align is in to the environment so that it can be called directly. Detailed intructions of TM-align are on [Zhang's lab](https://zhanggroup.org/TM-align/) website.
 ```
 g++ -static -O3 -ffast-math -lm -o TMalign TMalign.cpp
 export PATH=$PATH:$(pwd) # you can add the path directly into your .bashrc configure file
 ```
 
-Before running TM-align you need to manually edit the provided `*.ali` file into `fasta` format which looks like the follows, and this file will be automatically generated in our pipeline.
+Before running TMalign we need to convert the provided `*.ali` file into `fasta` format which looks like the follows. The codes for conversion is included in our pipeline.
 ```
 >aln1
 ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe-----------graMYEPIHGS
@@ -69,27 +77,47 @@ Use the following code to calculate the tm-score given two pdb files and an alig
 TMalign <query.pdb> <target.pdb> -I <result.ali.fasta>
 ```
 
-The outputs contain TM-scores normalized by query and target protein, and also the alignment patternoutput looks as follows:
-
-![TMscore output](img/tmscore.png)
-
-Our pipeline extracts the TM-score and RSMD from the TM-align result file, and calculate the Lalign using the provided `*ali` file by counting the uppercase letters instead.
+Our pipeline extracts the TM-score and RSMD from the TMalign result file, and calculate the Lalign using the provided `*ali` file by counting the uppercase letters instead.
 
 ![tmscore_result](img/tmscore_database.png)
 
 ## 2. Homology detection accuracy evaluation (Fmax)
-We adopt the classification pipeline used in DaliLite to classify 140 proteins from SCOP against 15211 pdbs from SCOPe 2.07. Binary classification for all protein pairs between query set and target set.
-
-![classification_gt](img/classification_query.png)
+We adopt the classification pipeline used in DaliLite to classify 140 proteins from SCOP against 15211 pdbs from SCOPe 2.07. This task is a binary classification for all protein pairs between query set and target set. Each pair has a label denoting whether they are in the same family, superfamily, or fold. After downloading the data from the DALI website, decompress it and rename it as `SCOP140`.
 
 ![classification_gt](img/classification_gt.png)
+
+To perform the evaluation, first generate pairwise alignment or database search results for the tool of interest using `classification_*.py` and make sure the outfile file is in the `SCOP140/ordered_pooled`, then use `evaluate_ordered_lists.pl` in the `SCOP140/bin` folder as described in the `README.benchmark` file.
+
+```
+cp classification_kpax.py classification_usalign.py SCOP140
+cd SCOP140
+python classification_kpax.py
+bin/evaluate_ordered_lists.pl ordered_pooled/ combinetable.pdb70 scope_140_targets.list pooled > evaluation_results/pooled_pdb70
+```
 
 ## 3. Phylogeny reconstruction quality evaluation (RF distance, TCS score)
 We adopt the workflow used in Foldtree to investigate the performance of different tools on predicting evolutionary hierarchies. RF distance is used to quantify the topological difference between the predicted tree and the ground-truth species tree.
 
+To run the pipeline, first generate pairwise alignment or database search results for the tool of interest using `swisstreeIterate_*.py`, then change the working path to the `foldtree` directory and run `TreeConstruct.py` with corresponding arguments.
+
+```
+# before running foldtree, you may activate the foldtree-specific conda environment first
+python siwsstreeIterate_kpax.py
+cd foldtree
+python TreeConstruct.py KPAX Identity
+cd ../
+```
+
 ## 4. Function inference
 A multi-label multi-class classification task. The GO terms of the target protein are transfered to the query protein, using the structural similarity value as the coefficient for all terms.
 
+First generate pairwise alignment or database search results for the tool of interest using `function_*.py`, then change the working path to the `CAFA3_MF` directory and run `evaluate.py` with corresponding arguments.
+
+```
+python function_kpax.py
+cd CAFA3_MF
+python evaluate.py --in KPAX_SO-Identity --npy kpax_soident.npy
+```
 
 ## Results
 
