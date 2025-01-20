@@ -1,5 +1,5 @@
 # StructAlign-evaluator
-Benchmarking protein structure alignment algorithms on several downstream tasks, see our preliminary results and reports on bioRxiv
+Benchmarking protein structure alignment algorithms on several downstream tasks, see our preliminary results and analysis on bioRxiv.
 * Malisam: **130** difficult non-homologous proteins in different families from SCOP (Accuracy, TM-score)
 * Malidup: **241** difficult proteins with internal duplicated structures (Accuracy, TM-score)
 * SCOP140 (homology detection): **140** proteins from the SCOP database and search against **15211** SCOPe 2.07 database for classification (Fmax)
@@ -18,6 +18,17 @@ We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also te
 ## Database download
 Before running any codes, please download all databases for benchmarking following the instruction in the `database` folder.
 
+## Software and tools download
+Download tools or methods you need to reproduce the results in our study. More information can be found in our manuscript. If you choose one or more of BLASTp, TMalign, DeepAlign, KPAX, and USalign, make sure they are in the enviroment and can be called directly. For the three deep-learning methods, you may have to setup separated conda environment for each of them.
+* [BLASTp](https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)
+* [TMalign](https://zhanggroup.org/TM-align/TMalign.cpp)
+* [DeepAlign](https://github.com/realbigws/DeepAlign/)
+* [KPAX](https://kpax.loria.fr)
+* [USalign](https://github.com/pylelab/USalign)
+* [DeepBLAST](https://github.com/flatironinstitute/deepblast)
+* [pLM-BLAST](https://github.com/labstructbioinf/pLM-BLAST)
+* [Foldseek](https://github.com/steineggerlab/foldseek)
+
 ## 1. Alignment quality evaluation (accuracy, TM-score)
 
 ### accuracy evaluation
@@ -27,14 +38,14 @@ ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe---
 -ftyEEVLAFEERLEREAeapSLYTVEHKVDfpVEHCYEKAL--GAEGVEEVYRRGLAQRhalpfeadGVVLKLDDltlwgelgytaraprFALAYKFP
 ```
 
-Then run the following code to calculate the accuracy given a ground truth alignment:
+We name the above format without sequence descriptions as **.ali** format. Then run the following code to calculate the accuracy given a ground truth alignment:
 ```
 python accuracy.py <groundtruth.ali> <predict.ali>
 ```
 
 ![accuracy example](img/accuracy.png)
 
-The outputs contain precision, recall, and accuracy score. Lowercase letters in the `<predict.ali>` file stand for unaligned or low-confident positions. Noted that letters in the `<groundtruth.ali>` file are all uppercase, and `<predict.ali>` file with only uppercase output results in identical accuracy, recall and precision scores.
+The outputs contain precision, recall, and accuracy score. Lowercase letters in the `<predict.ali>` file stand for unaligned or low-confident positions. Noted that letters in the `<groundtruth.ali>` file are all uppercase, and `<predict.ali>` file with only uppercase letters results in identical accuracy, recall and precision scores.
 
 ![accuracy_result](img/accuracy_database.png)
 
