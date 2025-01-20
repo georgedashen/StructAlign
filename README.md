@@ -6,6 +6,9 @@ Benchmarking protein structure alignment algorithms on several downstream tasks,
 * SwissTree (phylogeny reconstruction): **ST001-ST010** trees, each with proteins ranging from **25** to **131** (RF distance, TCS score)
 * CAFA3-MF (function inference): **1137** proteins for molecular function prediction against **32421** proteins using homology search (Fmax, Smin, AUPR)
 
+## Acknowledgment
+We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also teams that have been working on protein structure datasets such as SwissTree, UniProt, and CAFA. Many codes of our work are based on existing public codes, and we adopt them for investigating other alignment tools. Although we call it _evaluator_ in this wage, we only showcase how we benchmark each tool on tasks we assess. The main contributions of our study are incorporating a wide spectrum of methods and tools, and considering different ways to utilize both sequence and structure information. We also performa analysis from our results and provide insight to how different methods perform differently in downstream tasks.
+
 ## Environment
 ```
 * python=3.7.16
