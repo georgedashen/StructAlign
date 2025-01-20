@@ -16,7 +16,8 @@ system("mkdir $dir")
 The SCOP140 is downloaded according to the instructions on the [Dali](http://ekhidna2.biocenter.helsinki.fi/dali/README.benchmark) website.
 
 ## SwissTree (phylogeny reconstruction)
-Data used in this study is provided in the **SwissTree.tar.gz** compressed file. You can also find the data in the [foldtree](https://github.com/DessimozLab/fold_tree) github page.
+Full data and the filtered low-identity data used in this study is provided in the **SwissTree.tar.gz** and **SwissTree_cluster** compressed files, respectively. You can also find the data on the [foldtree](https://github.com/DessimozLab/fold_tree) github page.
 
 ## CAFA3-MF (function inference)
-Data is provided in the CAFA3-MF compressed file. You can also find the data as described in the [TEMPROT](https://doi.org/10.1186/s12859-023-05375-0) paper or on [zenodo](https://zenodo.org/records/7409660).
+Data is provided in the **CAFA3_MF** compressed file. You can also find the data as described in the [TEMPROT](https://doi.org/10.1186/s12859-023-05375-0) paper or on [zenodo](https://zenodo.org/records/7409660).
+You can download the protein structures used in CAFA3 using the download API provided on the [AlphaFoldDB](https://alphafold.com/#/default/get_predictions_api_prediction__qualifier__get) website. UniProt IDs for target proteins and query proteins are provided in **mf_train_uniprot_list.txt** and **mf_test_uniprot_list.txt**, respectively. Noted that some predictions are not available in AlphaFoldDB v4 and it results in 31740 structures instead of 32421 for the target dataset. Structures of 15 query proteins are also missing. We predicted the missing query proteins in the test set by AlphaFold3 (truncated within 5000 aa.), converted the CIF-formatted models to PDB format, and provided them in the compressed file.
