@@ -1,6 +1,5 @@
 # MalisamPDB(Malidup) is a folder that contains all structures in the Malisam(Malidup) dataset
 
-mkdir database
 mkdir -p database/Malisam
 mkdir -p database/Malidup
 

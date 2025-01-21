@@ -30,11 +30,11 @@ Download tools or methods you need to reproduce the results in our study. More i
 * [Foldseek](https://github.com/steineggerlab/foldseek)
 
 ## 1. Alignment quality evaluation (accuracy, TM-score)
-For each tool, find the corresponding `*_Malidup.py` or `*_Malisam.py` script to generate results. Then use `concatResult.py` to generate a final csv file for accuracy or reference-independent metrics such as TM-scores and RMSD.
+For each tool, find the corresponding `*_Malidup.py` or `*_Malisam.py` script to generate results. Then use `concatResult.py` to generate a final csv file for accuracy or reference-independent metrics such as TM-scores and RMSD. If you want to know how we calculate the accuracy and extract the metrics from TMalign result, see the subsession. The integrated results can be generated with the following pipeline:
 ```
 # make sure you are in the folder that containing the Malidup or Malisam data folder
 # Using DeepAlign as the example:
-python deepalign_Malidup.py
+python script/deepalign_Malidup.py
 python concatResult.py Malidup Malidup.accuracy accuracy
 python concatResult.py Malidup Malidup.tmscore tmscore
 ```
@@ -89,7 +89,7 @@ We adopt the classification pipeline used in DaliLite to classify 140 proteins f
 To perform the evaluation, first generate pairwise alignment or database search results for the tool of interest using `classification_*.py` and make sure the outfile file is in the `SCOP140/ordered_pooled`, then use `evaluate_ordered_lists.pl` in the `SCOP140/bin` folder as described in the `README.benchmark` file.
 
 ```
-cp classification_kpax.py classification_usalign.py SCOP140
+cp script/classification_kpax.py script/classification_usalign.py SCOP140
 cd SCOP140
 python classification_kpax.py
 bin/evaluate_ordered_lists.pl ordered_pooled/ combinetable.pdb70 scope_140_targets.list pooled > evaluation_results/pooled_pdb70
@@ -102,7 +102,7 @@ To run the pipeline, first generate pairwise alignment or database search result
 
 ```
 # before running foldtree, you may activate the foldtree-specific conda environment first
-python siwsstreeIterate_kpax.py
+python script/siwsstreeIterate_kpax.py
 cd foldtree
 python TreeConstruct.py KPAX Identity
 cd ../
@@ -114,7 +114,7 @@ A multi-label multi-class classification task. The GO terms of the target protei
 First generate pairwise alignment or database search results for the tool of interest using `function_*.py`, then change the working path to the `CAFA3_MF` directory and run `evaluate.py` with corresponding arguments.
 
 ```
-python function_kpax.py
+python script/function_kpax.py
 cd CAFA3_MF
 python evaluate.py --in KPAX_SO-Identity --npy kpax_soident.npy
 ```
