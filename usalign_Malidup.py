@@ -11,6 +11,8 @@ overwrite = 0
 # q_pdb: query protein
 # t_pdb: target protein
 # entry: name for output file
+
+os.chdir('Malidup')
 folderlist=os.listdir('.')
 for folder in folderlist:
     if os.path.isfile(folder):

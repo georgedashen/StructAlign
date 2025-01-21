@@ -15,6 +15,7 @@ record_tmscore = 1
 
 overwrite = True
 
+os.chdir('Malisam')
 df = pd.read_table('../Malisam_foldseek.tsv',header=None)
 df.columns = ['Query','Target', 'qaln', 'taln']
 

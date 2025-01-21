@@ -5,6 +5,7 @@ import subprocess
 import numpy as np
 import csv
 
+os.chdir('Malisam')
 #delete existing results
 os.system('find -name *.accuracy -type f -delete')
 os.system('find -name *.tmscore -type f -delete')
