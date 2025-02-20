@@ -33,13 +33,7 @@ We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also te
   <img src="img/swisstree_rf.png" width="25%" />
   <img src="img/function_result_full.png" width="32%" />
 </p>
-
-
-![homology](img/classification_facet_right.png)
-
-![phylogeny](img/swisstree_rf.png)
-
-![function](img/function_result_full.png)
+Figure 1. Results for all tasks. Fisrt row: alignment accuracy and other metrics on Malisam. Second row: performance on homology detection, phylogeny reconstruction, and function inference.
 
 ## Environment
 Detailed information please refer to our manuscript and the online supplementary.
