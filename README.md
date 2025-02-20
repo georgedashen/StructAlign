@@ -113,6 +113,7 @@ python concatResult.py Malidup Malidup.tmscore tmscore
 
 If you want to know how we calculate the accuracy and extract the metrics from TMalign result, see the next two subsessions.
 
+---
 ### Accuracy evaluation
 First retrieve the alignment pattern from the alignment result from any alignment tools, and then arrange it as the following:
 ```
@@ -131,6 +132,7 @@ The outputs contain precision, recall, and accuracy score. Lowercase letters in 
 
 ![accuracy_result](img/accuracy_database.png)
 
+---
 ### TM-score evaluation
 We provide the downloaded **TMalign** source file here and please follow the script below to compile it. Add the path where TM-align is in to the environment so that it can be called directly. Detailed intructions of TM-align are on [Zhang's lab](https://zhanggroup.org/TM-align/) website.
 ```
