@@ -6,10 +6,37 @@ Benchmarking protein structure alignment algorithms on several downstream tasks,
 * SwissTree (phylogeny reconstruction): **ST001-ST010** trees, each with proteins ranging from **25** to **131** (RF distance, TCS score)
 * CAFA3-MF (function inference): **1137** proteins for molecular function prediction against **32421** proteins using homology search (Fmax, Smin, AUPR)
 
+Methods in comparison:
+* TM-align
+* DALI(Server/DaliLite v.5)
+* DeepAlign
+* KPAX/KPAX-flex
+* US-align2(fNS)
+* pLM-BLAST
+* DeepBLAST
+* FoldSeek
+
+Methods also included:
+* BLASTp
+* Diamond
+* GTalign
+* Clustal Omega
+* mTMalign
+* 3DCOMB
+* FoldTree
+* Foldmason
+
 ## Acknowledgment
 We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also teams that have been working on protein structure datasets such as SwissTree, UniProt, and CAFA. Many codes of our work are based on existing public codes, and we adopt them for investigating other alignment tools. Although we call it _evaluator_ in this wage, we only showcase how we benchmark each tool on tasks we assess. The main contributions of our study are incorporating a wide spectrum of methods and tools, and considering different ways to utilize both sequence and structure information. We also performa analysis from our results and provide insight to how different methods perform differently in downstream tasks.
 
+## Results
+
+![tmscore_result](img/tmscore_database.png)
+
+
 ## Environment
+Detailed information please refer to our manuscript and the online supplementary.
+
 ```
 * python=3.7.16
 * numpy=1.21.5
@@ -118,17 +145,3 @@ python script/function_kpax.py
 cd CAFA3_MF
 python evaluate.py --in KPAX_SO-Identity --npy kpax_soident.npy
 ```
-
-## Results
-
-### Malisam
-
-<img src="img/accuracy_Malisam.png" width="800">
-
-![tm_score_bench](img/tm_score_Malisam.png)
-
-### Malidup
-
-<img src="img/accuracy_Malidup.png" width="800">
-
-![tm_score_bench](img/tm_score_Malidup.png)
