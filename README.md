@@ -72,8 +72,8 @@ Other methods tested in the manuscript include: BLASTp, Diamond, GTalign, Clusta
 
 ## 1. Alignment quality evaluation (accuracy, TM-score)
 For each tool, find the corresponding `*_Malidup.py` or `*_Malisam.py` script to generate results. Then use `concatResult.py` to generate a final csv file for accuracy or reference-independent metrics such as TM-scores and RMSD. The integrated results can be generated with the following pipeline:
-```
-<font color=gray size=72>color=gray</font> # make sure you are in the folder that containing the Malidup or Malisam data folder
+```python
+# make sure you are in the folder that containing the Malidup or Malisam data folder
 # Using DeepAlign as the example:
 python script/deepalign_Malidup.py
 
