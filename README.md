@@ -56,7 +56,7 @@ Before running any codes, please download all databases for benchmarking followi
 * CAFA3-MF: **1137** proteins for molecular function prediction against **32421** proteins using homology search (Fmax, Smin, AUPR)
 
 ## Software and tools download
-Download tools or methods you need to reproduce the results in our study. More information can be found in our manuscript. If you choose one or more of BLASTp, TMalign, DeepAlign, KPAX, and USalign, make sure they are in the enviroment and can be called directly. For the three deep-learning methods, you may have to setup separated conda environment for each of them.
+Download tools or methods you need to reproduce the results in our study. More information can be found in our manuscript. If you choose one or more of BLASTp, TMalign, DeepAlign, KPAX, and USalign, make sure their executable files are in the enviroment path and can be called directly. For the three deep-learning methods, you may setup separated conda environment for each of them, and ensure **they are installed in this project folder**.
 * [BLASTp](https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)
 * [TMalign](https://zhanggroup.org/TM-align/TMalign.cpp)
 * [DeepAlign](https://github.com/realbigws/DeepAlign/)
@@ -76,6 +76,15 @@ For each tool, find the corresponding `*_Malidup.py` or `*_Malisam.py` script to
 python script/deepalign_Malidup.py
 python concatResult.py Malidup Malidup.accuracy accuracy
 python concatResult.py Malidup Malidup.tmscore tmscore
+```
+
+For the three deep-learning methods, copy the corresponding `<algm>_<dataset>.py` script to their own folders and run from their own folders.
+```
+# make sure you have installed the pLM-BLAST and deepblast project from github in the project folder
+cp plmblast_Malisam.py plmblast_Maliudp.py pLM-BLAST
+cp deepblast_Malisam.py deepblast_Maliudp.py deepblast
+cd pLM-BLAST
+python plmblast_Malisam.py
 ```
 
 ### Accuracy evaluation
