@@ -1,7 +1,7 @@
 # StructAlign-evaluator
 Benchmarking nine protein structure alignment algorithms on three downstream tasks. Running time and memory consumption are tested as well. For more details please see our manuscript on bioRxiv.
 
-<img src="img/Graphical_Abstract.png" alt="abstract" width="500">
+<img src="img/Graphical_Abstract.png" alt="abstract" width="800">
 
 ## Acknowledgment
 We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also teams that have been working on protein structure datasets such as SwissTree, UniProt, and CAFA. Many codes of our work are based on existing public codes, and we adopt them for investigating other alignment tools. Although we call it _evaluator_ in this wage, we only showcase how we benchmark each tool on tasks we assess. The main contributions of our study are incorporating a wide spectrum of methods and tools, and considering different ways to utilize both sequence and structure information. We also performa analysis from our results and provide insight to how different methods perform differently in downstream tasks.
@@ -19,6 +19,11 @@ We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also te
 </p>
 
 **Figure 1.** Results for all tasks. **Fisrt row**: Reference-independent alignment metrics and reference-dependent accuracy on Malisam. **Second row**: Performance on homology detection, phylogeny reconstruction, and function inference.
+
+<img src="img/runtime_consumption.png" alt="runtime_memory">
+
+**Figure 2.** Running time and memory consumption comparison of different alignment tools. * indicates that TM-Vec is not able to process >1000 aa and we use truncated sequences as inputs instead.
+.
 
 ## Environment
 Detailed information please refer to our manuscript and the online supplementary.
