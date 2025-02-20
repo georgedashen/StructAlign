@@ -11,6 +11,7 @@ For more details please see our manuscript on bioRxiv.
 
 ## Acknowledgment
 We thank the excellent work done by DALI, Foldtree, and TEMPROT, and also other teams that have been working on protein structure datasets such as SwissTree, UniProt, and CAFA. Many codes of our work are based on existing public codes, and we adopt them for our investigation. Although we call it _evaluator_ in this wage, we only showcase how we benchmark each tool on tasks we assess.
+
 ## Results
 <p float="left">
   <img src="img/Malisam_tm_score.png" width="60%" />
@@ -25,7 +26,7 @@ We thank the excellent work done by DALI, Foldtree, and TEMPROT, and also other 
 
 **Figure 1.** Results for all tasks. **Fisrt row**: Reference-independent alignment metrics and reference-dependent accuracy on Malisam. **Second row**: Performance on homology detection, phylogeny reconstruction, and function inference.
 
-<img src="img/runtime_memory.png" alt="runtime_memory">
+<img src="img/runtime_memory.png" alt="runtime_memory" width="800">
 
 **Figure 2.** Running time and memory consumption comparison of different alignment tools. * indicates that TM-Vec is not able to process >1000 aa and we use truncated sequences as inputs instead.
 .
