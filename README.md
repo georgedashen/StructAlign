@@ -104,6 +104,13 @@ cd deepblast
 python deepblast_Malidup.py
 ```
 
+```
+# make sure you have installed the foldseek project from github and it can be called directly
+
+sh script/pairwise_pipeline.sh
+python script/foldseek_Malidup.py
+```
+
 If you want to know how we calculate the accuracy and extract the metrics from TMalign result, see the next two subsessions.
 
 ### Accuracy evaluation
