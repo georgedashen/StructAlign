@@ -35,8 +35,10 @@ We thank the excellent work done by DALI, Foldtree, and TEMPROT, and also other 
 Detailed information please refer to our manuscript and the online supplementary.
 
 ```
-* python=3.7.16
-* numpy=1.21.5
+* python=3.7.12
+* numpy=1.21.6
+* biopython=1.81
+* pandas = 1.3.5
 ```
 
 ## Database download
@@ -163,10 +165,38 @@ We adopt the classification pipeline used in DaliLite to classify 140 proteins f
 To perform the evaluation, first generate pairwise alignment or database search results for the tool of interest using `classification_*.py` and make sure the outfile file is in the `SCOP140/ordered_pooled`, then use `evaluate_ordered_lists.pl` in the `SCOP140/bin` folder as described in the `README.benchmark` file.
 
 ```
-cp script/classification_kpax.py script/classification_usalign.py SCOP140
+# Results for TM-align, DALI, and DeepAlign are provided in the downloaded SCOP140 dataset from the DALI server website
+cp script/classification_kpax.py script/classification_usalign.py genComp_classification.py classificationPipeline.sh SCOP140
 cd SCOP140
-python classification_kpax.py
+# We implement a batch process manner for large-scale pairwise comparison
+python genComp_classification.py
+# using 64 batch:
+sh classification.sh kpax 64
+cp ../script/merge_classification_kpax.sh ../script/process_classification_kpax.py kpax_results
+cd kpax_result
+sh merge_classification_kpax.sh
+python process_classification_kpax.py
+
+# After performing alignments with all tools in interest, we have all results in the ordered_pooled folder
 bin/evaluate_ordered_lists.pl ordered_pooled/ combinetable.pdb70 scope_140_targets.list pooled > evaluation_results/pooled_pdb70
+```
+
+For the three deep learning methods:
+```
+# pLM-BLAST
+cp scipt/classification_plmblast.sh pLM-BLAST
+cd pLM-BLAST
+sh classification_plmblast.sh
+```
+
+```
+# TM-Vec
+sh script/SCOP140_foldseek.sh
+```
+
+```
+# Foldseek
+sh script/SCOP140_foldseek.sh
 ```
 
 ## 3. Phylogeny reconstruction quality evaluation (RF distance, TCS score)
