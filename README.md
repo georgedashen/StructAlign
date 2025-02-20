@@ -76,21 +76,18 @@ For each tool, find the corresponding `*_Malidup.py` or `*_Malisam.py` script to
 # make sure you are in the folder that containing the Malidup or Malisam data folder
 # Using DeepAlign as the example:
 python script/deepalign_Malidup.py
-
 # For processing eixisting results of TM-align and DALI:
 python script/processMalidup.py
-
 # After performing pairwise alignments with all tools in interest
 python concatResult.py Malidup Malidup.accuracy accuracy
 python concatResult.py Malidup Malidup.tmscore tmscore
 ```
 
 For the three deep-learning methods, copy the corresponding `<algm>_<dataset>.py` script to their own folders and run from their own folders.
-```
+```python
 # make sure you have installed the pLM-BLAST project from github in the project folder
 # make sure you have downloaded MalidupPDB.tar.gz, MalisamPDB.tar.gz, Malidup_plmblast_pt.tar.gz, and Malisam_plmblast_pt.tar.gz,
 # and decompressed them as folders in the project folder
-
 python createFastaFold.py MalidupPDB MalidupFasta
 python createFastaFold.py MalisamPDB MalisamFasta
 cp plmblast_Malisam.py plmblast_Maliudp.py pLM-BLAST
@@ -98,17 +95,15 @@ cd pLM-BLAST
 python plmblast_Malidup.py
 ```
 
-```
+```python
 # make sure you have installed the deepblast project from github in the project folder
-
 cp deepblast_Malisam.py deepblast_Maliudp.py deepblast
 cd deepblast
 python deepblast_Malidup.py
 ```
 
-```
+```python
 # make sure you have installed the foldseek project from github and it can be called directly
-
 sh script/pairwise_pipeline.sh
 python script/foldseek_Malidup.py
 ```
@@ -164,7 +159,7 @@ We adopt the classification pipeline used in DaliLite to classify 140 proteins f
 
 To perform the evaluation, first generate pairwise alignment or database search results for the tool of interest using `classification_*.py` and make sure the outfile file is in the `SCOP140/ordered_pooled`, then use `evaluate_ordered_lists.pl` in the `SCOP140/bin` folder as described in the `README.benchmark` file.
 
-```
+```python
 # Results for TM-align, DALI, and DeepAlign are provided in the downloaded SCOP140 dataset from the DALI server website
 cp script/classification_kpax.py script/classification_usalign.py genComp_classification.py classificationPipeline.sh SCOP140
 cd SCOP140
@@ -176,25 +171,24 @@ cp ../script/merge_classification_kpax.sh ../script/process_classification_kpax.
 cd kpax_result
 sh merge_classification_kpax.sh
 python process_classification_kpax.py
-
 # After performing alignments with all tools in interest, we have all results in the ordered_pooled folder
 bin/evaluate_ordered_lists.pl ordered_pooled/ combinetable.pdb70 scope_140_targets.list pooled > evaluation_results/pooled_pdb70
 ```
 
 For the three deep learning methods:
-```
+```python
 # pLM-BLAST
 cp scipt/classification_plmblast.sh pLM-BLAST
 cd pLM-BLAST
 sh classification_plmblast.sh
 ```
 
-```
+```python
 # TM-Vec
 sh script/SCOP140_foldseek.sh
 ```
 
-```
+```python
 # Foldseek
 sh script/SCOP140_foldseek.sh
 ```
