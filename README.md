@@ -58,10 +58,10 @@ Before running any codes, please download all databases for benchmarking followi
 ## Software and tools download
 Download tools or methods you need to reproduce the results in our study. More information can be found in our manuscript. If you choose one or more of BLASTp, TMalign, DeepAlign, KPAX, and USalign, make sure their executable files are in the enviroment path and can be called directly. For the three deep-learning methods, you may setup separated conda environment for each of them, and ensure **they are installed in this project folder**.
 * [BLASTp](https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)
-* [TMalign](https://zhanggroup.org/TM-align/TMalign.cpp)
+* [TM-align](https://zhanggroup.org/TM-align/TMalign.cpp)
 * [DeepAlign](https://github.com/realbigws/DeepAlign/)
 * [KPAX](https://kpax.loria.fr)
-* [USalign](https://github.com/pylelab/USalign)
+* [US-align](https://github.com/pylelab/USalign)
 * [DeepBLAST](https://github.com/flatironinstitute/deepblast)
 * [pLM-BLAST](https://github.com/labstructbioinf/pLM-BLAST)
 * [Foldseek](https://github.com/steineggerlab/foldseek)
@@ -69,23 +69,42 @@ Download tools or methods you need to reproduce the results in our study. More i
 Other methods tested in the manuscript include: BLASTp, Diamond, GTalign, Clustal Omega, mTMalign, 3DCOMB, FoldTree, and Foldmason.
 
 ## 1. Alignment quality evaluation (accuracy, TM-score)
-For each tool, find the corresponding `*_Malidup.py` or `*_Malisam.py` script to generate results. Then use `concatResult.py` to generate a final csv file for accuracy or reference-independent metrics such as TM-scores and RMSD. If you want to know how we calculate the accuracy and extract the metrics from TMalign result, see the subsession. The integrated results can be generated with the following pipeline:
+For each tool, find the corresponding `*_Malidup.py` or `*_Malisam.py` script to generate results. Then use `concatResult.py` to generate a final csv file for accuracy or reference-independent metrics such as TM-scores and RMSD. The integrated results can be generated with the following pipeline:
 ```
 # make sure you are in the folder that containing the Malidup or Malisam data folder
 # Using DeepAlign as the example:
 python script/deepalign_Malidup.py
+
+# For processing eixisting results of TM-align and DALI:
+python script/processMalidup.py
+
+# After performing pairwise alignments with all tools in interest
 python concatResult.py Malidup Malidup.accuracy accuracy
 python concatResult.py Malidup Malidup.tmscore tmscore
 ```
 
 For the three deep-learning methods, copy the corresponding `<algm>_<dataset>.py` script to their own folders and run from their own folders.
 ```
-# make sure you have installed the pLM-BLAST and deepblast project from github in the project folder
+# make sure you have installed the pLM-BLAST project from github in the project folder
+# make sure you have downloaded MalidupPDB.tar.gz, MalisamPDB.tar.gz, Malidup_plmblast_pt.tar.gz, and Malisam_plmblast_pt.tar.gz,
+# and decompressed them as folders in the project folder
+
+python createFastaFold.py MalidupPDB MalidupFasta
+python createFastaFold.py MalisamPDB MalisamFasta
 cp plmblast_Malisam.py plmblast_Maliudp.py pLM-BLAST
-cp deepblast_Malisam.py deepblast_Maliudp.py deepblast
 cd pLM-BLAST
-python plmblast_Malisam.py
+python plmblast_Malidup.py
 ```
+
+```
+# make sure you have installed the deepblast project from github in the project folder
+
+cp deepblast_Malisam.py deepblast_Maliudp.py deepblast
+cd deepblast
+python deepblast_Malidup.py
+```
+
+If you want to know how we calculate the accuracy and extract the metrics from TMalign result, see the next two subsessions.
 
 ### Accuracy evaluation
 First retrieve the alignment pattern from the alignment result from any alignment tools, and then arrange it as the following:
