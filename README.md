@@ -30,7 +30,12 @@ Methods also included:
 We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also teams that have been working on protein structure datasets such as SwissTree, UniProt, and CAFA. Many codes of our work are based on existing public codes, and we adopt them for investigating other alignment tools. Although we call it _evaluator_ in this wage, we only showcase how we benchmark each tool on tasks we assess. The main contributions of our study are incorporating a wide spectrum of methods and tools, and considering different ways to utilize both sequence and structure information. We also performa analysis from our results and provide insight to how different methods perform differently in downstream tasks.
 
 ## Results
-
+<table>
+  <tr>
+    <td><figure><img src="img/Malisam_accuracy.png" alt="Image 1" width="300"><figcaption>Alignment accuracy on Malisam.</figcaption></figure>figure></td>
+    <td><figure><img src="img/Malisam_tm_score.png" alt="Image 2" width="300"><figcaption>Alignment performance on Malisam.</figcaption></figure>figure></td>
+  </tr>
+</table>
 ![Malisam_alignment_accuracy](img/Malisam_accuracy.png)
 ![Malisam_alignment_accuracy](img/Malisam_tm_score.png)
 
