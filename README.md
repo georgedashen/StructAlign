@@ -1,34 +1,6 @@
 # StructAlign-evaluator
 Benchmarking protein structure alignment algorithms on several downstream tasks, see our preliminary results and analysis on bioRxiv.
 
-Datasets used for the benchmark:
-
-**Alignment performance**
-* Malisam: **130** difficult non-homologous proteins in different families from SCOP (Accuracy, TM-score)
-* Malidup: **241** difficult proteins with internal duplicated structures (Accuracy, TM-score)
-
-**Homlogy detection**
-* SCOP140: **140** proteins from the SCOP database and search against **15211** SCOPe 2.07 database for classification (Fmax)
-
-**Phylogeny reconstruction**
-* SwissTree: **ST001-ST010** trees, each with proteins ranging from **25** to **131** (RF distance, TCS score)
-
-**Function inference**
-* CAFA3-MF: **1137** proteins for molecular function prediction against **32421** proteins using homology search (Fmax, Smin, AUPR)
-
-Methods in comparison:
-* TM-align
-* DALI(Server/DaliLite v.5)
-* DeepAlign
-* KPAX/KPAX-flex
-* US-align2(fNS)
-* pLM-BLAST
-* DeepBLAST
-* FoldSeek
-
-Methods also included:
-BLASTp, Diamond, GTalign, Clustal Omega, mTMalign, 3DCOMB, FoldTree, Foldmason
-
 ## Acknowledgment
 We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also teams that have been working on protein structure datasets such as SwissTree, UniProt, and CAFA. Many codes of our work are based on existing public codes, and we adopt them for investigating other alignment tools. Although we call it _evaluator_ in this wage, we only showcase how we benchmark each tool on tasks we assess. The main contributions of our study are incorporating a wide spectrum of methods and tools, and considering different ways to utilize both sequence and structure information. We also performa analysis from our results and provide insight to how different methods perform differently in downstream tasks.
 
@@ -57,6 +29,19 @@ Detailed information please refer to our manuscript and the online supplementary
 ## Database download
 Before running any codes, please download all databases for benchmarking following the instruction in the `database` folder.
 
+**Alignment performance**
+* Malisam: **130** difficult non-homologous proteins in different families from SCOP (Accuracy, TM-score)
+* Malidup: **241** difficult proteins with internal duplicated structures (Accuracy, TM-score)
+
+**Homlogy detection**
+* SCOP140: **140** proteins from the SCOP database and search against **15211** SCOPe 2.07 database for classification (Fmax)
+
+**Phylogeny reconstruction**
+* SwissTree: **ST001-ST010** trees, each with proteins ranging from **25** to **131** (RF distance, TCS score)
+
+**Function inference**
+* CAFA3-MF: **1137** proteins for molecular function prediction against **32421** proteins using homology search (Fmax, Smin, AUPR)
+
 ## Software and tools download
 Download tools or methods you need to reproduce the results in our study. More information can be found in our manuscript. If you choose one or more of BLASTp, TMalign, DeepAlign, KPAX, and USalign, make sure they are in the enviroment and can be called directly. For the three deep-learning methods, you may have to setup separated conda environment for each of them.
 * [BLASTp](https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)
@@ -67,6 +52,8 @@ Download tools or methods you need to reproduce the results in our study. More i
 * [DeepBLAST](https://github.com/flatironinstitute/deepblast)
 * [pLM-BLAST](https://github.com/labstructbioinf/pLM-BLAST)
 * [Foldseek](https://github.com/steineggerlab/foldseek)
+
+Other methods tested in the manuscript include: BLASTp, Diamond, GTalign, Clustal Omega, mTMalign, 3DCOMB, FoldTree, and Foldmason.
 
 ## 1. Alignment quality evaluation (accuracy, TM-score)
 For each tool, find the corresponding `*_Malidup.py` or `*_Malisam.py` script to generate results. Then use `concatResult.py` to generate a final csv file for accuracy or reference-independent metrics such as TM-scores and RMSD. If you want to know how we calculate the accuracy and extract the metrics from TMalign result, see the subsession. The integrated results can be generated with the following pipeline:
