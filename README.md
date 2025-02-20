@@ -2,13 +2,17 @@
 Benchmarking protein structure alignment algorithms on several downstream tasks, see our preliminary results and analysis on bioRxiv.
 
 Datasets used for the benchmark:
+
 **Alignment performance**
 * Malisam: **130** difficult non-homologous proteins in different families from SCOP (Accuracy, TM-score)
 * Malidup: **241** difficult proteins with internal duplicated structures (Accuracy, TM-score)
+
 **Homlogy detection**
 * SCOP140: **140** proteins from the SCOP database and search against **15211** SCOPe 2.07 database for classification (Fmax)
-Phylogeny reconstruction
+
+**Phylogeny reconstruction**
 * SwissTree: **ST001-ST010** trees, each with proteins ranging from **25** to **131** (RF distance, TCS score)
+
 **Function inference**
 * CAFA3-MF: **1137** proteins for molecular function prediction against **32421** proteins using homology search (Fmax, Smin, AUPR)
 
