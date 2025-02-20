@@ -29,7 +29,7 @@ We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also te
 </p>
 
 <p float="left">
-  <img src="img/classification_facet_right.png" width="32%" />
+  <img src="img/classification_facet_right.png" width="40%" />
   <img src="img/swisstree_rf.png" width="25%" />
   <img src="img/function_result_full.png" width="32%" />
 </p>
