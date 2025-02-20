@@ -71,20 +71,14 @@ Download tools or methods you need to reproduce the results in our study. More i
 Other methods tested in the manuscript include: BLASTp, Diamond, GTalign, Clustal Omega, mTMalign, 3DCOMB, FoldTree, and Foldmason.
 
 ## 1. Alignment quality evaluation (accuracy, TM-score)
-For each tool, find the corresponding `*_Malidup.py` or `*_Malisam.py` script to generate results. Then use `concatResult.py` to generate a final csv file for accuracy or reference-independent metrics such as TM-scores and RMSD. The integrated results can be generated with the following pipeline. Make sure you are in the folder that containing the Malidup or Malisam data folder. Use DeepAlign as the example:
+For each tool, find the corresponding `*_Malidup.py` or `*_Malisam.py` script to generate results. Then use `concatResult.py` to generate a final csv file for accuracy or reference-independent metrics such as TM-scores and RMSD. The integrated results can be generated with the following pipeline. Make sure you are in the folder that containing the Malidup or Malisam data folder. Use **DeepAlign** as the example:
 ```python
 python script/deepalign_Malidup.py
 ```
 
-For processing eixisting results of TM-align and DALI:
+For processing eixisting results of **TM-align** and **DALI**:
 ```python
 python script/processMalidup.py
-```
-
-After performing pairwise alignments with all tools in interest:
-```python
-python concatResult.py Malidup Malidup.accuracy accuracy
-python concatResult.py Malidup Malidup.tmscore tmscore
 ```
 
 For the three deep-learning methods, copy the corresponding `<algm>_<dataset>.py` script to their own folders and run from their own folders.
@@ -98,7 +92,6 @@ cd pLM-BLAST
 python plmblast_Malidup.py
 ```
 
-
 **DeepBLAST**. Make sure you have installed the deepblast project from github in the project folder.
 ```python
 cp deepblast_Malisam.py deepblast_Maliudp.py deepblast
@@ -110,6 +103,12 @@ python deepblast_Malidup.py
 ```python
 sh script/pairwise_pipeline.sh
 python script/foldseek_Malidup.py
+```
+
+After performing pairwise alignments with all tools in interest:
+```python
+python concatResult.py Malidup Malidup.accuracy accuracy
+python concatResult.py Malidup Malidup.tmscore tmscore
 ```
 
 If you want to know how we calculate the accuracy and extract the metrics from TMalign result, see the next two subsessions.
@@ -161,22 +160,18 @@ We adopt the classification pipeline used in DaliLite to classify 140 proteins f
 
 ![classification_gt](img/classification_gt.png)
 
-To perform the evaluation, first generate pairwise alignment or database search results for the tool of interest using `classification_*.py` and make sure the outfile file is in the `SCOP140/ordered_pooled`, then use `evaluate_ordered_lists.pl` in the `SCOP140/bin` folder as described in the `README.benchmark` file. Results for TM-align, DALI, and DeepAlign are provided in the downloaded SCOP140 dataset from the DALI server website. We implement batch processing for large-scale pairwise comparison for KPAX and USalign with a batch of 64:
+To perform the evaluation, first generate pairwise alignment or database search results for the tool of interest using `classification_*.py` and make sure the outfile file is in the `SCOP140/ordered_pooled`, then use `evaluate_ordered_lists.pl` in the `SCOP140/bin` folder as described in the `README.benchmark` file. Results for TM-align, DALI, and DeepAlign are provided in the downloaded SCOP140 dataset from the DALI server website. 
+
+We implement batch processing for large-scale pairwise comparison for **KPAX** and **USalign** with a batch of 64:
 ```python
 cp script/classification_kpax.py script/classification_usalign.py genComp_classification.py classificationPipeline.sh SCOP140
 cd SCOP140
 python genComp_classification.py
-sh classification.sh kpax 64
+sh classificationPipeline.sh kpax 64
 cp ../script/merge_classification_kpax.sh ../script/process_classification_kpax.py kpax_results
 cd kpax_result
 sh merge_classification_kpax.sh
 python process_classification_kpax.py
-```
-
-After performing alignments with all tools in interest, we have all results in the ordered_pooled folder:
-```python
-cd SCOP140
-bin/evaluate_ordered_lists.pl ordered_pooled/ combinetable.pdb70 scope_140_targets.list pooled > evaluation_results/pooled_pdb70
 ```
 
 For the three deep learning methods:
@@ -195,6 +190,12 @@ sh script/SCOP140_foldseek.sh
 **Foldseek**：
 ```python
 sh script/SCOP140_foldseek.sh
+```
+
+After performing alignments with all tools in interest, we have all results in the ordered_pooled folder:
+```python
+cd SCOP140
+bin/evaluate_ordered_lists.pl ordered_pooled/ combinetable.pdb70 scope_140_targets.list pooled > evaluation_results/pooled_pdb70
 ```
 
 ## 3. Phylogeny reconstruction quality evaluation (RF distance, TCS score)
