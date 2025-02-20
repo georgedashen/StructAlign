@@ -28,7 +28,7 @@ We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also te
   <img src="img/Malisam_accuracy.png" width="35%" />
 </p>
 
-<p float="left">
+<p float="left" align="center">
   <img src="img/classification_facet_right.png" width="32%" />
   <img src="img/swisstree_rf.png" width="32%" />
   <img src="img/function_result_full.png" width="32%" />
