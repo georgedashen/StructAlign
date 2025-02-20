@@ -1,7 +1,7 @@
 # StructAlign-evaluator
 Benchmarking nine protein structure alignment algorithms on three downstream tasks. Running time and memory consumption are tested as well. For more details please see our manuscript on bioRxiv.
 
-![abstract](img/graphical_abstract.png)
+![abstract](img/Graphical_Abstract.png)
 
 ## Acknowledgment
 We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also teams that have been working on protein structure datasets such as SwissTree, UniProt, and CAFA. Many codes of our work are based on existing public codes, and we adopt them for investigating other alignment tools. Although we call it _evaluator_ in this wage, we only showcase how we benchmark each tool on tasks we assess. The main contributions of our study are incorporating a wide spectrum of methods and tools, and considering different ways to utilize both sequence and structure information. We also performa analysis from our results and provide insight to how different methods perform differently in downstream tasks.
