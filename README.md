@@ -31,8 +31,14 @@ We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also te
 
 ## Results
 
-![tmscore_result](img/tmscore_database.png)
+![Malisam_alignment_accuracy](img/Malisam_accuracy.png)
+![Malisam_alignment_accuracy](img/Malisam_tm_score.png)
 
+![homology](img/classification_facet_right.png)
+
+![phylogeny](img/swisstree_rf.png)
+
+![function](img/function_result_full.png)
 
 ## Environment
 Detailed information please refer to our manuscript and the online supplementary.
