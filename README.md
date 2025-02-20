@@ -1,11 +1,10 @@
 # StructAlign-evaluator
-Benchmarking nine protein structure alignment algorithms on three downstream tasks. Running time and memory consumption are tested as well. For more details please see our manuscript on bioRxiv.
+Benchmarking nine protein structure alignment algorithms on three downstream tasks. Running time and memory consumption are tested as well. We find large discrepancies between the alignment performance (e.g., TM-score, RMSD) and task accuracy performance of existing structure alignment tools. We demonstrate that structure information is useful for tasks including phylogeny reconstruction and function inference that are previously tackled by sequence-based alignment methods. Moreover, we show that structure information improves overall performance of existing tools in phylogeny reconstruction and function inference when combined with sequence information. Our evaluation on running time and memory consumption of these tools suggests that the trade-off between task accuracy and speed is still the major consideration in developing new alignment tools when applied in downstream tasks. For more details please see our manuscript on bioRxiv.
 
 <img src="img/Graphical_Abstract.png" alt="abstract" width="700">
 
 ## Acknowledgment
-We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also teams that have been working on protein structure datasets such as SwissTree, UniProt, and CAFA. Many codes of our work are based on existing public codes, and we adopt them for investigating other alignment tools. Although we call it _evaluator_ in this wage, we only showcase how we benchmark each tool on tasks we assess. The main contributions of our study are incorporating a wide spectrum of methods and tools, and considering different ways to utilize both sequence and structure information. We also performa analysis from our results and provide insight to how different methods perform differently in downstream tasks.
-
+We thank the excellent work done by DALI, Foldtree, and TEMPROT, and also other teams that have been working on protein structure datasets such as SwissTree, UniProt, and CAFA. Many codes of our work are based on existing public codes, and we adopt them for our investigation. Although we call it _evaluator_ in this wage, we only showcase how we benchmark each tool on tasks we assess.
 ## Results
 <p float="left">
   <img src="img/Malisam_tm_score.png" width="60%" />
