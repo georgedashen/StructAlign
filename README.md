@@ -31,8 +31,8 @@ We thank the excellent work done by the DALI, Foldtree, and TEMPROT, and also te
 </table>
 
 <p float="left">
-  <img src="img/Malisam_accuracy.png" width="50%" />
-  <img src="img/Malisam_tm_score.png" width="50%" />
+  <img src="img/Malisam_accuracy.png" width="40%" />
+  <img src="img/Malisam_tm_score.png" width="45%" />
 </p>
 
 ![homology](img/classification_facet_right.png)
