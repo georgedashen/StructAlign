@@ -111,6 +111,8 @@ python concatResult.py Malidup Malidup.accuracy accuracy
 python concatResult.py Malidup Malidup.tmscore tmscore
 ```
 
+Result files for Malidup are `Malidup.accuracy` and `Maldup.tmscore` for reference-dependent accuracy and reference-independent metrics, respectively.
+
 If you want to know how we calculate the accuracy and extract the metrics from TMalign result, see the next two subsessions.
 
 ---
@@ -135,9 +137,11 @@ The outputs contain precision, recall, and accuracy score. Lowercase letters in 
 ---
 ### TM-score evaluation
 We provide the downloaded **TMalign** source file here and please follow the script below to compile it. Add the path where TM-align is in to the environment so that it can be called directly. Detailed intructions of TM-align are on [Zhang's lab](https://zhanggroup.org/TM-align/) website.
+
+You can add the path of TM-align directly to your .bashrc configure file.
 ```bash
 g++ -static -O3 -ffast-math -lm -o TMalign TMalign.cpp
-export PATH=$PATH:$(pwd) # you can add the path directly into your .bashrc configure file
+export PATH=$PATH:$(pwd)
 ```
 
 Before running TMalign we need to convert the provided `*.ali` file into `fasta` format which looks like the follows. The codes for conversion is included in our pipeline.
@@ -149,7 +153,7 @@ ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe---
 ```
 
 Use the following code to calculate the tm-score given two pdb files and an alignment file in fasta format:
-```bash
+```
 TMalign <query.pdb> <target.pdb> -I <result.ali.fasta>
 ```
 
@@ -200,21 +204,84 @@ cd SCOP140
 bin/evaluate_ordered_lists.pl ordered_pooled/ combinetable.pdb70 scope_140_targets.list pooled > evaluation_results/pooled_pdb70
 ```
 
-## 3. Phylogeny reconstruction quality evaluation (RF distance, TCS score)
-We adopt the workflow used in Foldtree to investigate the performance of different tools on predicting evolutionary hierarchies. RF distance is used to quantify the topological difference between the predicted tree and the ground-truth species tree.
+Results for Fmax score are written in file `SCOP140/evaluation_results/pooled_pdb70`.
 
-To run the pipeline, first generate pairwise alignment or database search results for the tool of interest using `swisstreeIterate_*.py`, then change the working path to the `foldtree` directory and run `TreeConstruct.py` with corresponding arguments `<method>` and `metric`.
+## 3. Phylogeny reconstruction quality evaluation (RF distance, TCS score)
+We adopt the workflow used in Foldtree to investigate the performance of different tools on predicting evolutionary hierarchies. RF distance is used to quantify the topological difference between the predicted tree and the ground-truth species tree. We have already included most of the output trees and results in the **SwissTree.tar.gz** and **SwissTree_cluster.tar.gz** file on Zenodo. Please download it first, place and decompress it in the project folder.
+
+```bash
+conda install -c bioconda fastme
+pip install ete3 toytree colour wget statsmodels matlplotlib seaborn
+```
+
+To run the pipeline and reproduce the result, first generate pairwise alignment or database search results for the tool of interest using `swisstreeIterate_*.py`, then change the working path to the `foldtree` directory and run `TreeConstruct.py` with corresponding arguments `<method>` and `metric`.
 
 **Before running foldtree, you may activate the foldtree-specific conda environment first.  Make sure you have downloaded the SwissTree data and rename it as "SwissTree".**
 
+To run the **FoldTree** pipeline, use the commands below. **This step is recommended** for generating necessary input files.
+```bash
+cp script/SwissTree2identifier.py script/TreeConstruct.py script/TreePipeline.py fold_tree
+sh script/SwissTree2fasta.sh
+cd fold_tree
+python SwissTree2identifier.py
+python TreePipeline.py
+```
+
+Use **TM-align** and **KPAX** as the example, first performance pairwise alignment of all proteins in all families. **DeepAlign** and **USalign** can be evaluated using scripts with the suffix `deepalign` and `USalign`, respectively.
 ```bash
 for i in ST001 ST002 ST003 ST004 ST005 ST006 ST007 ST008 ST009 ST010 ST011; do
+    python script/siwsstreeIterate_tmalign.py ${i}
     python script/siwsstreeIterate_kpax.py ${i}
 done
 
-cd foldtree
+cd fold_tree
+python TreeConstruct.py TMalign TMscore
 python TreeConstruct.py KPAX Identity
 ```
+
+To analyze **DALI** results, upload all pdb files of a family to the server with the **All against all** function. Download the `newick_unrooted.txt` tree file from the server and place the downloaded tree file in the corresponding SwissTree family subfolder (e.g.,ST001). Rename it as `dali_unrooted.nhx`.
+```bash
+for i in ST001 ST002 ST003 ST004 ST005 ST006 ST007 ST008 ST009 ST010 ST011; do
+    python script/renameDaliTree.py ${i}
+done
+
+cp script/TreeConstruct_dali.py fold_tree
+cd fold_tree
+python TreeConstruct_dali.py
+```
+
+**pLM-BLAST.** Make sure you have installed pLM-BLAST from github.
+```bash
+cp script/swisstreeIterate_plmblast.py pLM-BLAST
+cd pLM-BLAST
+
+for i in ST001 ST002 ST003 ST004 ST005 ST006 ST007 ST008 ST009 ST010 ST011; do
+    python swisstreeIterate_plmblast.py ${i}
+done
+
+cd ../fold_tree
+python TreeConstruct.py plmblast TMscore
+```
+
+**DeepBLAST.** Make sure you have installed deepblast from github, downloaded models `deepblast-v3.ckpt` and `prot_t5_xl_uniref50` and place them in the `models` folder in the project folder.
+```bash
+cp script/swisstreeIterate_deepblast.py deepblast
+cd deepblast
+python swisstreeIterate_deepblast.py
+cd ../fold_tree
+python TreeConstruct.py deepblast TMscore
+```
+
+For multiple-sequence/structure alignment, please install **FastTree** first and the programme can be called directly. You have to install the corresponding tool (e.g., **Clustal Omega**, **mTMalign**, **3DCOM**) first referring to our online supplementary.
+
+Use **KPAX-MSA** as the example:
+```bash
+cp TreeConstruct_kpaxmulti.py fold_tree
+cd fold_tree
+python TreeConstruct_kpaxmulti.py
+```
+
+Results for TCS score and RF distance are stored in files `SwissTree.congruence` and `SwissTree.rf`, respectively.
 
 ## 4. Function inference
 A multi-label multi-class classification task. The GO terms of the target protein are transfered to the query protein, using the structural similarity value as the coefficient for all terms.
