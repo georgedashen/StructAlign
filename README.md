@@ -72,19 +72,19 @@ Other methods tested in the manuscript include: BLASTp, Diamond, GTalign, Clusta
 
 ## 1. Alignment quality evaluation (accuracy, TM-score)
 For each tool, find the corresponding `*_Malidup.py` or `*_Malisam.py` script to generate results. Then use `concatResult.py` to generate a final csv file for accuracy or reference-independent metrics such as TM-scores and RMSD. The integrated results can be generated with the following pipeline. Make sure you are in the folder that containing the Malidup or Malisam data folder. Use **DeepAlign** as the example:
-```python
+```bash
 python script/deepalign_Malidup.py
 ```
 
 For processing eixisting results of **TM-align** and **DALI**:
-```python
+```bash
 python script/processMalidup.py
 ```
 
 For the three deep-learning methods, copy the corresponding `<algm>_<dataset>.py` script to their own folders and run from their own folders.
 
 **pLM-BLAST**. Make sure you have installed the pLM-BLAST project from github in the project folder and have downloaded MalidupPDB.tar.gz, MalisamPDB.tar.gz, Malidup_plmblast_pt.tar.gz, and Malisam_plmblast_pt.tar.gz, and decompressed them as folders in the project folder.
-```python
+```bash
 python createFastaFold.py MalidupPDB MalidupFasta
 python createFastaFold.py MalisamPDB MalisamFasta
 cp plmblast_Malisam.py plmblast_Maliudp.py pLM-BLAST
@@ -93,20 +93,20 @@ python plmblast_Malidup.py
 ```
 
 **DeepBLAST**. Make sure you have installed the deepblast project from github in the project folder.
-```python
+```bash
 cp deepblast_Malisam.py deepblast_Maliudp.py deepblast
 cd deepblast
 python deepblast_Malidup.py
 ```
 
 **Foldseek**. Make sure you have installed the foldseek project from github and it can be called directly.
-```python
+```bash
 sh script/pairwise_pipeline.sh
 python script/foldseek_Malidup.py
 ```
 
 After performing pairwise alignments with all tools in interest:
-```python
+```bash
 python concatResult.py Malidup Malidup.accuracy accuracy
 python concatResult.py Malidup Malidup.tmscore tmscore
 ```
@@ -122,7 +122,7 @@ ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe---
 ```
 
 We name the above format without sequence descriptions as **.ali** format. Then run the following code to calculate the accuracy given a ground truth alignment:
-```
+```bash
 python accuracy.py <groundtruth.ali> <predict.ali>
 ```
 
@@ -135,7 +135,7 @@ The outputs contain precision, recall, and accuracy score. Lowercase letters in 
 ---
 ### TM-score evaluation
 We provide the downloaded **TMalign** source file here and please follow the script below to compile it. Add the path where TM-align is in to the environment so that it can be called directly. Detailed intructions of TM-align are on [Zhang's lab](https://zhanggroup.org/TM-align/) website.
-```
+```bash
 g++ -static -O3 -ffast-math -lm -o TMalign TMalign.cpp
 export PATH=$PATH:$(pwd) # you can add the path directly into your .bashrc configure file
 ```
@@ -149,7 +149,7 @@ ppakRPEQGLLRLRKGLD--lYANLRPAQIF--DVDILVVREltGNMFGDILSDEASQLTgs----igMLPSASLGe---
 ```
 
 Use the following code to calculate the tm-score given two pdb files and an alignment file in fasta format:
-```
+```bash
 TMalign <query.pdb> <target.pdb> -I <result.ali.fasta>
 ```
 
@@ -165,7 +165,7 @@ We adopt the classification pipeline used in DaliLite to classify 140 proteins f
 To perform the evaluation, first generate pairwise alignment or database search results for the tool of interest using `classification_*.py` and make sure the outfile file is in the `SCOP140/ordered_pooled`, then use `evaluate_ordered_lists.pl` in the `SCOP140/bin` folder as described in the `README.benchmark` file. Results for TM-align, DALI, and DeepAlign are provided in the downloaded SCOP140 dataset from the DALI server website. 
 
 We implement batch processing for large-scale pairwise comparison for **KPAX** and **USalign** with a batch of 64:
-```python
+```bash
 cp script/classification_kpax.py script/classification_usalign.py genComp_classification.py classificationPipeline.sh SCOP140
 cd SCOP140
 python genComp_classification.py
@@ -178,24 +178,24 @@ python process_classification_kpax.py
 
 For the three deep learning methods:
 **pLM-BLAST**:
-```python
+```bash
 cp scipt/classification_plmblast.sh pLM-BLAST
 cd pLM-BLAST
 sh classification_plmblast.sh
 ```
 
 **TM-Vec**；
-```python
+```bash
 sh script/SCOP140_foldseek.sh
 ```
 
 **Foldseek**：
-```python
+```bash
 sh script/SCOP140_foldseek.sh
 ```
 
 After performing alignments with all tools in interest, we have all results in the ordered_pooled folder:
-```python
+```bash
 cd SCOP140
 bin/evaluate_ordered_lists.pl ordered_pooled/ combinetable.pdb70 scope_140_targets.list pooled > evaluation_results/pooled_pdb70
 ```
