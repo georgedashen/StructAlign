@@ -181,6 +181,7 @@ python process_classification_kpax.py
 ```
 
 For the three deep learning methods:
+
 **pLM-BLAST**:
 ```bash
 cp scipt/classification_plmblast.sh pLM-BLAST
