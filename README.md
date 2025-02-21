@@ -205,8 +205,9 @@ We adopt the workflow used in Foldtree to investigate the performance of differe
 
 To run the pipeline, first generate pairwise alignment or database search results for the tool of interest using `swisstreeIterate_*.py`, then change the working path to the `foldtree` directory and run `TreeConstruct.py` with corresponding arguments.
 
+**Before running foldtree, you may activate the foldtree-specific conda environment first.**
+
 ```
-# before running foldtree, you may activate the foldtree-specific conda environment first
 python script/siwsstreeIterate_kpax.py
 cd foldtree
 python TreeConstruct.py KPAX Identity

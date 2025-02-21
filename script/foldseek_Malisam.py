@@ -16,7 +16,7 @@ record_tmscore = 1
 overwrite = True
 
 os.chdir('Malisam')
-df = pd.read_table('../Malisam_foldseek.tsv',header=None)
+df = pd.read_table('../Malisam_result/aln.tsv',header=None)
 df.columns = ['Query','Target', 'qaln', 'taln']
 
 folderlist=os.listdir('.')
