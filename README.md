@@ -168,7 +168,7 @@ We adopt the classification pipeline used in DaliLite to classify 140 proteins f
 
 To perform the evaluation, first generate pairwise alignment or database search results for the tool of interest using `classification_*.py` and make sure the outfile file is in the `SCOP140/ordered_pooled`, then use `evaluate_ordered_lists.pl` in the `SCOP140/bin` folder as described in the `README.benchmark` file. Results for TM-align, DALI, and DeepAlign are provided in the downloaded SCOP140 dataset from the DALI server website. 
 
-We implement batch processing for large-scale pairwise comparison for **KPAX** and **USalign** with a batch of 64:
+We implement batch processing for large-scale pairwise comparison for **KPAX** and **US-align** with a batch of 64:
 ```bash
 cp script/classification_kpax.py script/classification_usalign.py genComp_classification.py classificationPipeline.sh SCOP140
 cd SCOP140
@@ -289,8 +289,34 @@ A multi-label multi-class classification task. The GO terms of the target protei
 
 First generate pairwise alignment or database search results for the tool of interest using `function_*.py`, then change the working path to the `CAFA3_MF` directory and run `evaluate.py` with corresponding arguments.
 
-```
-python script/function_kpax.py
+We implement batch processing for large-scale pairwise comparison for **TM-align**, **DeepAlign**, **KPAX**, and **US-align** with a batch of 64.
+
+Use **KPAX** as the example:
+```bash
+python genComp_function.py
+cp function_kpax.py functionPipeline.sh CAFA3_MF
 cd CAFA3_MF
+sh functionPipeline.sh kpax 64
+cp ../script/merge_function_kpax.sh ../script/process_function_kpax.py kpax_results
+cd kpax_result
+sh merge_function_kpax.sh
+python process_function_kpax.py
+cd ../
 python evaluate.py --in KPAX_SO-Identity --npy kpax_soident.npy
+```
+
+For the three deep learning methods:
+
+**pLM-BLAST.**
+```bash
+cp function_plmblast.sh pLM-BLAST
+cd pLM-BLAST
+sh function_plmblast.sh
+cd ../
+python evaluate.py --in pLM-BLAST_Prefilter --npy plmblast.npy
+```
+
+TM-Vec.
+```bash
+sh 
 ```
