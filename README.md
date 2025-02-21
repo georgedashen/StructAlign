@@ -203,15 +203,17 @@ bin/evaluate_ordered_lists.pl ordered_pooled/ combinetable.pdb70 scope_140_targe
 ## 3. Phylogeny reconstruction quality evaluation (RF distance, TCS score)
 We adopt the workflow used in Foldtree to investigate the performance of different tools on predicting evolutionary hierarchies. RF distance is used to quantify the topological difference between the predicted tree and the ground-truth species tree.
 
-To run the pipeline, first generate pairwise alignment or database search results for the tool of interest using `swisstreeIterate_*.py`, then change the working path to the `foldtree` directory and run `TreeConstruct.py` with corresponding arguments.
+To run the pipeline, first generate pairwise alignment or database search results for the tool of interest using `swisstreeIterate_*.py`, then change the working path to the `foldtree` directory and run `TreeConstruct.py` with corresponding arguments `<method>` and `metric`.
 
-**Before running foldtree, you may activate the foldtree-specific conda environment first.**
+**Before running foldtree, you may activate the foldtree-specific conda environment first.  Make sure you have downloaded the SwissTree data and rename it as "SwissTree".**
 
-```
-python script/siwsstreeIterate_kpax.py
+```bash
+for i in ST001 ST002 ST003 ST004 ST005 ST006 ST007 ST008 ST009 ST010 ST011; do
+    python script/siwsstreeIterate_kpax.py ${i}
+done
+
 cd foldtree
 python TreeConstruct.py KPAX Identity
-cd ../
 ```
 
 ## 4. Function inference
