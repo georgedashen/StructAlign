@@ -189,7 +189,7 @@ cd pLM-BLAST
 sh classification_plmblast.sh
 ```
 
-**TM-Vec**；
+**TM-Vec**:
 ```bash
 sh script/SCOP140_foldseek.sh
 ```
