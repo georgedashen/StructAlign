@@ -42,7 +42,7 @@ Detailed information please refer to our manuscript and the online supplementary
 ```
 
 ## Database download
-Before running any codes, please download all databases for benchmarking following the instruction in the `database` folder.
+Before running any codes, please download all databases for benchmarking following the instruction in the `database` folder. Data is stored in [Zenodo](https://zenodo.org/records/14938229).
 
 **Alignment performance**
 * Malisam: **130** difficult non-homologous proteins in different families from SCOP (Accuracy, TM-score)
