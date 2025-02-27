@@ -101,7 +101,7 @@ python deepblast_Malidup.py
 
 **Foldseek**. Make sure you have installed the foldseek project from github and it can be called directly.
 ```bash
-sh script/pairwise_pipeline.sh
+sh script/foldseek_pipeline_pairwise.sh
 python script/foldseek_Malidup.py
 ```
 
@@ -196,7 +196,7 @@ sh script/SCOP140_foldseek.sh
 
 **Foldseek**：
 ```bash
-sh script/SCOP140_foldseek.sh
+sh foldseek_pipeline_classification.sh
 ```
 
 After performing alignments with all tools in interest, we have all results in the ordered_pooled folder:
@@ -294,15 +294,39 @@ We implement batch processing for large-scale pairwise comparison for **TM-align
 Use **KPAX** as the example:
 ```bash
 python genComp_function.py
-cp function_kpax.py functionPipeline.sh CAFA3_MF
-cd CAFA3_MF
 sh functionPipeline.sh kpax 64
-cp ../script/merge_function_kpax.sh ../script/process_function_kpax.py kpax_results
-cd kpax_result
+cp script/merge_function_kpax.sh script/process_function_kpax.py CAFA3_MF/kpax_results
+cd CAFA3_MF/kpax_result
 sh merge_function_kpax.sh
 python process_function_kpax.py
 cd ../
 python evaluate.py --in KPAX_SO-Identity --npy kpax_soident.npy
+```
+
+For **TM-align**, **DeepAlign**, and **USalign**, use the `functionPipeline.sh` script with algorithm in `function_<algorithm>.py` as and batch number as arguments to generate pairwise alignment results:
+```bash
+sh functionPipeline.sh tmalign 64
+sh functionPipeline.sh deepalign 64
+sh functionPipeline.sh usalign 64
+```
+
+For **TM-align** and **DeepAlign** to generate the alignment metric table and function inference evaluation:
+```bash
+cd CAFA3_MF/TMalign
+sh ../../script/merge_function.sh
+python ../../script/process_function.py TMalign
+cd ../
+python evaluate.py --in TMalign_TMscore --npy tm_tm.npy
+```
+
+For **USalign**:
+```bash
+cd CAFA3_MF/USalign
+python ../../script/process_function_usalign.py
+sh ../../script/merge_function.sh
+python ../../script/process_function.py USalign
+cd ../
+python evaluate.py --in USalign_TMscore --npy usalign_tm.npy
 ```
 
 For the three deep learning methods:
@@ -312,11 +336,31 @@ For the three deep learning methods:
 cp function_plmblast.sh pLM-BLAST
 cd pLM-BLAST
 sh function_plmblast.sh
-cd ../
+cd ../CAFA3_MF
 python evaluate.py --in pLM-BLAST_Prefilter --npy plmblast.npy
 ```
 
-TM-Vec.
+**TM-Vec**.
 ```bash
-sh 
+sh tmvec_pipeline_function.sh
+cd CAFA3_MF
+python evaluate.py --in TM-Vec_TMscore --npy tmvec_tm.npy
 ```
+
+**Foldseek**.
+```bash
+sh foldseek_pipeline_function.sh
+cd CAFA3_MF
+python evalaute.py --in foldseek_Fident --npy fs_fident.npy
+```
+
+## 5. Running time and memory consumption evaluation
+We use the built-in function in the Linux system `/usr/bin/time` to assess execution time and CPU memory consumption.
+```bash
+/usr/bin/time -v -o <algorithm_name>.log <command_for_alignment>
+```
+
+An example output looks like this:
+![time](img/time.png)
+
+The execution time is measured with `Elapsed (wall clock) time (h:mm:ss or m:ss)`, and the memory consumption is measured with `Maximum resident set size (kbytes)`.
