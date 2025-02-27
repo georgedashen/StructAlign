@@ -19,9 +19,9 @@ We thank the excellent work done by DALI, Foldtree, and TEMPROT, and also other 
 </p>
 
 <p float="left">
-  <img src="img/classification_facet_right.png" width="40%" />
+  <img src="img/classification_facet.png" width="40%" />
   <img src="img/swisstree_rf.png" width="25%" />
-  <img src="img/function_result_full.png" width="32%" />
+  <img src="img/function_result.png" width="32%" />
 </p>
 
 **Figure 1.** Results for all tasks. **Fisrt row**: Reference-independent alignment metrics and reference-dependent accuracy on Malisam. **Second row**: Performance on homology detection, phylogeny reconstruction, and function inference.
