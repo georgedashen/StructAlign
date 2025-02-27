@@ -1,4 +1,4 @@
-# StructAlign-evaluator
+# A comprehensive benchmark study of protein structure alignment tools on downstream tasks
 This study benchmarks nine protein structure alignment algorithms on three downstream tasks. Running time and memory consumption are tested as well. 
 * We find large discrepancies between the alignment performance (e.g., TM-score, RMSD) and task accuracy performance of existing structure alignment tools.
 * We demonstrate that structure information is useful for tasks including phylogeny reconstruction and function inference that are previously tackled by sequence-based alignment methods.
