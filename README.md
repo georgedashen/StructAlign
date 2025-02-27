@@ -60,9 +60,10 @@ Before running any codes, please download all databases for benchmarking followi
 ## Software and tools download
 Download tools or methods you need to reproduce the results in our study. More information can be found in our manuscript. If you choose one or more of BLASTp, TMalign, DeepAlign, KPAX, and USalign, make sure their executable files are in the enviroment path and can be called directly. For the three deep-learning methods, you may setup separated conda environment for each of them, and ensure **they are installed in this project folder**.
 * [BLASTp](https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)
+* [DALI](http://ekhidna2.biocenter.helsinki.fi/dali/README.v5.html)
 * [TM-align](https://zhanggroup.org/TM-align/TMalign.cpp)
 * [DeepAlign](https://github.com/realbigws/DeepAlign/)
-* [KPAX](https://kpax.loria.fr)
+* [KPAX/KPAX-flex](https://kpax.loria.fr)
 * [US-align](https://github.com/pylelab/USalign)
 * [DeepBLAST](https://github.com/flatironinstitute/deepblast)
 * [pLM-BLAST](https://github.com/labstructbioinf/pLM-BLAST)
