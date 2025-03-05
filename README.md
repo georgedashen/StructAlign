@@ -10,8 +10,7 @@ For more details please see our manuscript on bioRxiv.
 <img src="img/Graphical_Abstract.png" alt="abstract" width="700">
 
 ## Acknowledgment
-We thank the excellent work done by DALI, Foldtree, and TEMPROT, and also other teams that have been working on protein structure datasets such as SwissTree, UniProt, and CAFA. Many codes of our work are based on existing public codes, and we adopt them for our investigation. Although we call it _evaluator_ in this wage, we only showcase how we benchmark each tool on tasks we assess.
-
+We thank the excellent work done by DALI, Foldtree, and TEMPROT, and also other teams that have been working on protein structure datasets such as SwissTree, UniProt, and CAFA. Many codes of our work are based on existing public codes, and we adopt them for our investigation.
 ## Results
 <p float="left">
   <img src="img/Malisam_tm_score.png" width="60%" />
