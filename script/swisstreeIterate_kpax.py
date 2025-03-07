@@ -9,7 +9,7 @@ overwrite = 1
 
 # enumerate and then each comparison
 fold = sys.argv[1] # ST001 - ST011
-folder = 'SwissTree_globin/' + fold
+folder = 'SwissTree/' + fold
 os.chdir(folder)
 
 struct_list = glob.glob('structs/*pdb')

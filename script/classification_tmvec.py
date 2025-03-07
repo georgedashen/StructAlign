@@ -5,7 +5,7 @@
 import pandas as pd
 import os
 
-df = pd.read_table('SCOP140/tmvec_results/pdb70_tabular.txt')
+df = pd.read_table('SCOP140/tmvec_results/SCOP140_tabular_1000.txt')
 df = df.loc[:,['database_id','query_id','tm-score']]
 df = df.sort_values('tm-score',ascending=False)
 

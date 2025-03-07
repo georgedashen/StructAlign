@@ -8,7 +8,7 @@ overwrite = 1
 
 # enumerate and then each comparison
 fold = sys.argv[1] # ST001 - ST011
-folder = 'SwissTree_cluster/' + fold
+folder = 'SwissTree/' + fold
 os.chdir(folder)
 
 os.system(f'mkdir -p blast')

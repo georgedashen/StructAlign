@@ -6,7 +6,7 @@ import csv
 from deepblast.utils import load_model
 from deepblast.dataset.utils import states2alignment
 
-model = load_model('models/deepblast-v3.ckpt', 'models/prot_t5_xl_uniref50', device='cuda')
+model = load_model('../models/deepblast-v3.ckpt', '../models/prot_t5_xl_uniref50', device='cuda')
 
 # enter the folder first
 # return q_pdb, t_pdb, entry

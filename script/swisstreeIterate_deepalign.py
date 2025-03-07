@@ -9,7 +9,7 @@ overwrite = 1
 
 # enumerate and then each comparison
 fold = sys.argv[1] # ST001 - ST011
-folder = 'SwissTree_cluster/' + fold
+folder = 'SwissTree/' + fold
 struct_list = glob.glob(folder + '/structs/*')
 pair_list = list(itertools.combinations(struct_list,2))
 

@@ -6,7 +6,6 @@
 import pandas as pd
 import os
 
-info=pd.read_table('SCOP140/scope_140_targets.list',header=None)
 df=pd.read_table('SCOP140_results/allvsall.tsv',header=None)
 
 df[0]=df[0].str.replace(r'_MODEL_[0-9]*_A','',regex=True)
