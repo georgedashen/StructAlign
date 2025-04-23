@@ -53,10 +53,10 @@ for folder in folderlist:
     
     # TM-score calculation
     
-    #os.system(f'TMalign {q_pdb} {t_pdb} -I {gt_fasta} > {entry}.manual.tmalign')
-    #os.system(f'TMalign {q_pdb} {t_pdb} -I {tm_fasta} > {entry}.tm.tmalign')
-    #os.system(f'TMalign {q_pdb} {t_pdb} -I {dali_fasta} > {entry}.dali.tmalign')
-    #os.system(f'TMalign {q_pdb} {t_pdb} -I {fast_fasta} > {entry}.fast.tmalign')
+    os.system(f'TMalign {q_pdb} {t_pdb} -I {gt_fasta} > {entry}.manual.tmalign')
+    os.system(f'TMalign {q_pdb} {t_pdb} -I {tm_fasta} > {entry}.tm.tmalign')
+    os.system(f'TMalign {q_pdb} {t_pdb} -I {dali_fasta} > {entry}.dali.tmalign')
+    os.system(f'TMalign {q_pdb} {t_pdb} -I {fast_fasta} > {entry}.fast.tmalign')
     os.system(f'TMalign {q_pdb} {t_pdb} -I {fast_fasta} > {entry}.fast.tmalign')
     
     def getTMscore(model):
@@ -82,7 +82,7 @@ for folder in folderlist:
     getTMscore('fast')
     
     # Alignment accuracy
-    #os.system(f'python ../../accuracy.py {gt} {tm} --verbose 0 --folder {folder} --query {q_pdb} --target {t_pdb} --model tm --outfile {entry}.accuracy')
-    #os.system(f'python ../../accuracy.py {gt} {dali} --verbose 0 --folder {folder} --query {q_pdb} --target {t_pdb} --model dali --outfile {entry}.accuracy')
-    #os.system(f'python ../../accuracy.py {gt} {fast} --verbose 0 --folder {folder} --query {q_pdb} --target {t_pdb} --model fast --outfile {entry}.accuracy')
+    os.system(f'python ../../accuracy.py {gt} {tm} --verbose 0 --folder {folder} --query {q_pdb} --target {t_pdb} --model tm --outfile {entry}.accuracy')
+    os.system(f'python ../../accuracy.py {gt} {dali} --verbose 0 --folder {folder} --query {q_pdb} --target {t_pdb} --model dali --outfile {entry}.accuracy')
+    os.system(f'python ../../accuracy.py {gt} {fast} --verbose 0 --folder {folder} --query {q_pdb} --target {t_pdb} --model fast --outfile {entry}.accuracy')
     os.chdir('../')

@@ -42,7 +42,7 @@ for folder in folderlist:
     tm_fasta = folder+'.tm.ali.fasta'
     dali_fasta = folder+'.dali.ali.fasta'
     fast_fasta = folder+'.fast.ali.fasta'
-    '''
+
     # Create fasta input for TM-align
     a1 = '>'+q_pdb.replace('.pdb','')
     a2 = '>'+t_pdb.replace('.pdb','')
@@ -60,7 +60,7 @@ for folder in folderlist:
     os.system(f'TMalign {q_pdb} {t_pdb} -I {tm_fasta} > {folder}.tm.tmalign')
     os.system(f'TMalign {q_pdb} {t_pdb} -I {dali_fasta} > {folder}.dali.tmalign')
     os.system(f'TMalign {q_pdb} {t_pdb} -I {fast_fasta} > {folder}.fast.tmalign')
-    '''
+
     def getTMscore(model):
     # The L_aligned and RSMD obtained are different from original results
     # Only retain the larger TM-score
