@@ -1,5 +1,7 @@
 # A comprehensive benchmark study of protein structure alignment tools on downstream tasks
 This study benchmarks nine protein structure alignment algorithms on three downstream tasks. Running time and memory consumption are tested as well. 
+The preprint version can be found on bioarxiv: [https://www.biorxiv.org/content/10.1101/2025.03.11.642719v1](https://www.biorxiv.org/content/10.1101/2025.03.11.642719v1)
+
 * We find large discrepancies between the alignment performance (e.g., TM-score, RMSD) and task accuracy performance of existing structure alignment tools.
 * We demonstrate that structure information is useful for tasks including phylogeny reconstruction and function inference that are previously tackled by sequence-based alignment methods.
 * Moreover, we show that structure information improves overall performance of existing tools in phylogeny reconstruction and function inference when combined with sequence information.
