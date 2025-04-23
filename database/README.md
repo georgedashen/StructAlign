@@ -1,8 +1,14 @@
-## Malidup and Malisam
+## Malidup and Malisam (quality of alignment)
 
 The Malisam and Malidup databases are downloaded from http://prodata.swmed.edu/malisam/ and http://prodata.swmed.edu/malidup/, respectively. (see the [DeepBLAST](https://github.com/flatironinstitute/deepblast) github). One is with named **analogs.tar** (Malisam) and the other is **dup.tar** (Malidup).
 
 Extract the compressed files and rename them into folder `Malisam` and `Malidup`, respectively, and **place them in the project folder** but NOT the `database` folder.
+
+```bash
+mkdir Malisam Malidup
+tar -xvf analogs.tar -C Malisam
+tar -xvf dup.tar -C Malidup
+```
 
 The complete PDB structure files are provided as the PDB entries. The aligned regions of each proteins in a pair is stored as separated files. The ground truth alignment pattern of the aligned regions are provided in `*_*.aln` and `*_*.manual.ali`, with the latter simplified from the former. Results from **TM-align**, **DALI**, and **fast** are also provided, with `*_*.<algm>.ali` as the aligned pattern and `*_*.<algm>.pdb` as the superimposed positions.
 
@@ -13,6 +19,7 @@ system("mkdir $dir")
 ```
 
 ## SCOP140 (homology detection)
+
 The SCOP140 is downloaded according to the instructions on the [Dali](http://ekhidna2.biocenter.helsinki.fi/dali/README.benchmark) website.
 
 ## SwissTree (phylogeny reconstruction)
