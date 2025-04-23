@@ -70,7 +70,8 @@ for folder in folderlist:
     if record_accuracy:
         gt = entry+'.manual.ali'
         fs = entry+'.foldseek.ali'
-        os.system(f"sed -i '/foldseek/d' {entry}.accuracy")
+        if os.path.exists(f'{entry}.accuracy'):
+            os.system(f"sed -i '/foldseek/d' {entry}.accuracy")
         os.system(f'python ../../accuracy.py {gt} {fs} --verbose 0 --folder {folder} --query {q_pdb} --target {t_pdb} --model foldseek --outfile {entry}.accuracy')
 
     # run TM-align
