@@ -97,14 +97,14 @@ python plmblast_Malidup.py
 
 **DeepBLAST**. Make sure you have installed the deepblast project from github in the project folder.
 ```bash
-cp deepblast_Malisam.py deepblast_Maliudp.py deepblast
+cp script/deepblast_Malisam.py script/deepblast_Maliudp.py deepblast
 cd deepblast
 python deepblast_Malidup.py
 ```
 
 **Foldseek**. Make sure you have installed the foldseek project from github and it can be called directly.
 ```bash
-sh script/foldseek_pipeline_pairwise.sh
+sh foldseek_Mali_pipeline.sh
 python script/foldseek_Malidup.py
 ```
 
