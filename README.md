@@ -1,5 +1,6 @@
 # A comprehensive benchmark study of protein structure alignment tools on downstream tasks
 This study benchmarks nine protein structure alignment algorithms on three downstream tasks. Running time and memory consumption are tested as well. 
+
 The preprint version can be found on bioarxiv: [https://www.biorxiv.org/content/10.1101/2025.03.11.642719v1](https://www.biorxiv.org/content/10.1101/2025.03.11.642719v1)
 
 * We find large discrepancies between the alignment performance (e.g., TM-score, RMSD) and task accuracy performance of existing structure alignment tools.
