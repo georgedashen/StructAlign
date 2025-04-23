@@ -54,7 +54,7 @@ Before running any codes, please download all databases for benchmarking followi
 * SCOP140: **140** proteins from the SCOP database and search against **15211** SCOPe 2.07 database for classification (Fmax)
 
 **Phylogeny reconstruction**
-* SwissTree: **ST001-ST010** trees, each with proteins ranging from **25** to **131** (RF distance, TCS score)
+* SwissTree: **ST001-ST011** trees, each with proteins ranging from **25** to **131** (RF distance, TCS score)
 
 **Function inference**
 * CAFA3-MF: **1137** proteins for molecular function prediction against **32421** proteins using homology search (Fmax, Smin, AUPR)
