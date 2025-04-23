@@ -1,10 +1,10 @@
-# MalisamPDB(Malidup) is a folder that contains all structures in the Malisam(Malidup) dataset
+# MalisamPDB(MalidupPDB) is a folder that contains all structures in the Malisam(Malidup) dataset
+  
+mkdir -p MalisamPDB
+mkdir -p MalidupPDB
 
-mkdir -p database/Malisam
-mkdir -p database/Malidup
-
-find Malisam/ -type f -name "*_*.pdb" -exec cp {} database/Malisam +
-find Malidup/ -type f -name "*_*.pdb" -exec cp {} database/Malidup +
+find Malisam -type f -name '*_*.pdb' ! -name '*.*.*' -exec cp {} MalisamPDB/ \;
+find Malidup -type f -name '*_*.pdb' ! -name '*.*.*' -exec cp {} MalidupPDB/ \;
 
 foldseek createdb MalisamPDB/ database/Malisam
 foldseek createdb MalidupPDB/ database/Malidup
