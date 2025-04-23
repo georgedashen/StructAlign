@@ -1,6 +1,6 @@
 ## Malidup and Malisam
 
-The Malisam and Malidup databases are downloaded from http://prodata.swmed.edu/malisam/ and http://prodata.swmed.edu/malidup/, respectively. (see the [DeepBLAST](https://github.com/flatironinstitute/deepblast) github)
+The Malisam and Malidup databases are downloaded from http://prodata.swmed.edu/malisam/ and http://prodata.swmed.edu/malidup/, respectively. (see the [DeepBLAST](https://github.com/flatironinstitute/deepblast) github). One is with named **analogs.tar** (Malisam) and the other is **dup.tar** (Malidup).
 
 Extract the compressed files and rename them into folder `Malisam` and `Malidup`, respectively, and **place them in the project folder** but NOT the `database` folder.
 
