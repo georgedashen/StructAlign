@@ -42,8 +42,8 @@ for folder in folderlist:
         os.chdir('../')
         continue
 
-    x = subprocess.run(f"../../pdb2fasta {q_pdb}", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip().split('\n')[1]
-    y = subprocess.run(f"../../pdb2fasta {t_pdb}", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip().split('\n')[1]
+    x = subprocess.run(f"../../pdb2fasta ../../MalidupPDB/{q_pdb}", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip().split('\n')[1]
+    y = subprocess.run(f"../../pdb2fasta ../../MalidupPDB/{t_pdb}", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip().split('\n')[1]
     qstart = np.char.find(x,aln1.replace('-',''))
     qend = qstart + len(aln1.replace('-',''))
     tstart = np.char.find(y,aln2.replace('-',''))
