@@ -61,7 +61,7 @@ for folder in folderlist:
         aln1 = aln1 + x[qend:].lower() + (len(y)-tend-(len(x)-qend))*'-'
         aln2 = aln2 + y[tend:].lower()
 
-    if not os.path.exists(f'{entry}.foldseek.ali'):
+    if not os.path.exists(f'{entry}.foldseek.ali') or overwrite:
         subprocess.run(f"newlines=('>{q}' '{aln1}' '>{t}' '{aln2}') && printf '%s\n' ${{newlines[@]}} > {entry}.foldseek.ali.fasta",shell=True,executable='/bin/bash')
         os.system(f"sed '/^>/d' {entry}.foldseek.ali.fasta > {entry}.foldseek.ali")
     if record_accuracy:
@@ -73,7 +73,7 @@ for folder in folderlist:
 
     # run TM-align
     try:
-        if not os.path.exists(f'{entry}.foldseek.tmalign') and record_accuracy:
+        if not os.path.exists(f'{entry}.foldseek.tmalign') or overwrite:
             os.system(f'TMalign {q_pdb} {t_pdb} -I {entry}.foldseek.ali.fasta > {entry}.foldseek.tmalign')
         result = subprocess.run(f"grep 'User-specified initial alignment' {entry}.foldseek.tmalign | cut -d'=' -f2", stdout=subprocess.PIPE, shell=True, text=True)
         stats = result.stdout.strip().split(',')
