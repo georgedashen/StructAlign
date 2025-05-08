@@ -68,7 +68,6 @@ for folder in folderlist:
             tmscore, lalign, rmsd = stats
         except:
             print(f'{entry} TMalign Error!')
-            os.chdir('../')
             continue
 
         result = subprocess.run(f"cat {entry}.{model}.ali", stdout=subprocess.PIPE, shell=True, text=True)
