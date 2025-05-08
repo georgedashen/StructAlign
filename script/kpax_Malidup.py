@@ -9,6 +9,8 @@ import csv
 # t_pdb: target protein
 # entry: name for output file
 
+overwrite = 1
+
 os.chdir('Malidup')
 folderlist=os.listdir('.')
 for folder in folderlist:
@@ -48,11 +50,17 @@ for folder in folderlist:
     os.system(f'python ../../accuracy.py {gt} {kpf} --verbose 0 --folder {folder} --query {q_pdb} --target {t_pdb} --model kpax_flex --outfile {entry}.accuracy')
     # run TM-align
     for model in ['', '_flex']:
-        os.system(f'TMalign {q_pdb} {t_pdb} -I {entry}.{model}.ali.fasta > {entry}.{model}.tmalign')
-        result = subprocess.run(f"grep 'User-specified initial alignment' {entry}.{model}.tmalign | cut -d'=' -f2", stdout=subprocess.PIPE, shell=True, text=True)
-        stats = result.stdout.strip().split(',')
-        stats = [i.replace(' ','') for i in stats] # TM-score, L_align, RMSD
-        tmscore, lalign, rmsd = stats
+        try:
+            if not os.path.exists(f'{entry}.{model}.tmalign') or overwrite:
+                os.system(f'TMalign {q_pdb} {t_pdb} -I {entry}.{model}.ali.fasta > {entry}.{model}.tmalign')
+            result = subprocess.run(f"grep 'User-specified initial alignment' {entry}.{model}.tmalign | cut -d'=' -f2", stdout=subprocess.PIPE, shell=True, text=True)
+            stats = result.stdout.strip().split(',')
+            stats = [i.replace(' ','') for i in stats] # TM-score, L_align, RMSD
+            tmscore, lalign, rmsd = stats
+        except:
+            print(f'{entry} TMalign Error!')
+            os.chdir('../')
+            continue
 
         result = subprocess.run(f"cat {entry}.{model}.ali", stdout=subprocess.PIPE, shell=True, text=True)
         result = result.stdout.strip().split('\n')
