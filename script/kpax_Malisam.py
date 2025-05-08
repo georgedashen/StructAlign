@@ -58,7 +58,7 @@ for folder in folderlist:
                 csv.writer(f).writerow(['Folder', 'Query', 'Target', 'Model', 'RMSD', 'L_align', 'TM-score'])
     os.system(f"sed -i '/kpax/d' {entry}.tmscore")
 
-    for model in ['', '_flex']:
+    for model in ['kpax', 'kpax_flex']:
         try:
             if not os.path.exists(f'{entry}.{model}.tmalign') or overwrite:
                 os.system(f'TMalign {q_pdb} {t_pdb} -I {entry}.{model}.ali.fasta > {entry}.{model}.tmalign')
@@ -76,11 +76,11 @@ for folder in folderlist:
 
         result = subprocess.run(f"grep 'TM-score=' {entry}.{model}.tmalign | cut -d' ' -f2", stdout=subprocess.PIPE, shell=True, text=True)
         tmscore = max(result.stdout.strip().split('\n'))
-        tmscore = subprocess.run(f"grep 'Tscore' kpax_results/{q}/{t}_{q}{model}.kalign | cut -d':' -f2", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip()
-        rmsd = subprocess.run(f"grep 'RMSD-align' kpax_results/{q}/{t}_{q}{model}.kalign | cut -d':' -f2", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip()
-        lalign = subprocess.run(f"grep 'Naligned' kpax_results/{q}/{t}_{q}{model}.kalign | cut -d':' -f2", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip()
+        tmscore = subprocess.run(f"grep 'Tscore' kpax_results/{q}/{t}_{q}{model.replace('kpax','')}.kalign | cut -d':' -f2", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip()
+        rmsd = subprocess.run(f"grep 'RMSD-align' kpax_results/{q}/{t}_{q}{model.replace('kpax','')}.kalign | cut -d':' -f2", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip()
+        lalign = subprocess.run(f"grep 'Naligned' kpax_results/{q}/{t}_{q}{model.replace('kpax','')}.kalign | cut -d':' -f2", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip()
 
         with open(f'{entry}.tmscore','a') as f:
-            csv.writer(f).writerow([folder, q_pdb, t_pdb, 'kpax'+model, rmsd, lalign, tmscore])
+            csv.writer(f).writerow([folder, q_pdb, t_pdb, model, rmsd, lalign, tmscore])
 
     os.chdir('../')
