@@ -292,7 +292,11 @@ A multi-label multi-class classification task. The GO terms of the target protei
 
 First generate pairwise alignment or database search results for the tool of interest using `function_*.py`, then change the working path to the `CAFA3_MF` directory and run `evaluate.py` with corresponding arguments.
 
-We implement batch processing for large-scale pairwise comparison for **TM-align**, **DeepAlign**, **KPAX**, and **US-align** with a batch of 64.
+We implement batch processing for large-scale pairwise comparison for **TM-align**, **DeepAlign**, **KPAX**, and **US-align** with 64 parallel processes.
+
+---
+Note: Runniung any pairwise alignment methods will take days and weeks even with 64 processes. We recommend starting from foldseek, which is the fastest to run.
+---
 
 Use **KPAX** as the example:
 ```bash
