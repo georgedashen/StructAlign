@@ -34,7 +34,6 @@ for folder in folderlist:
     if not os.path.exists(f'kpax_results/{q}/{t}_{q}_flex.kalign'):
         os.system(f'kpax -flex {q_pdb} {t_pdb}')
         os.system(f'cp kpax_results/{q}/{t}_{q}_flex.fasta {entry}.kpax_flex.ali.fasta')
-    '''
     for model in ['kpax','kpax_flex']:
         os.system(f"sed '/^>/d' {entry}.{model}.ali.fasta > {entry}.{model}.ali")
         with open(f'{entry}.{model}.ali','r') as f:
@@ -47,10 +46,8 @@ for folder in folderlist:
     kpf = entry+'.kpax_flex.ali'
     os.system(f'python ../../accuracy.py {gt} {kp} --verbose 0 --folder {folder} --query {q_pdb} --target {t_pdb} --model kpax --outfile {entry}.accuracy')
     os.system(f'python ../../accuracy.py {gt} {kpf} --verbose 0 --folder {folder} --query {q_pdb} --target {t_pdb} --model kpax_flex --outfile {entry}.accuracy')
-'''
     # run TM-align
     for model in ['', '_flex']:
-        '''
         os.system(f'TMalign {q_pdb} {t_pdb} -I {entry}.{model}.ali.fasta > {entry}.{model}.tmalign')
         result = subprocess.run(f"grep 'User-specified initial alignment' {entry}.{model}.tmalign | cut -d'=' -f2", stdout=subprocess.PIPE, shell=True, text=True)
         stats = result.stdout.strip().split(',')
@@ -63,7 +60,6 @@ for folder in folderlist:
 
         result = subprocess.run(f"grep 'TM-score=' {entry}.{model}.tmalign | cut -d' ' -f2", stdout=subprocess.PIPE, shell=True, text=True)
         tmscore = max(result.stdout.strip().split('\n'))
-        '''
         tmscore = subprocess.run(f"grep 'Tscore' kpax_results/{q}/{t}_{q}{model}.kalign | cut -d':' -f2", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip()
         rmsd = subprocess.run(f"grep 'RMSD-align' kpax_results/{q}/{t}_{q}{model}.kalign | cut -d':' -f2", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip()
         lalign = subprocess.run(f"grep 'Naligned' kpax_results/{q}/{t}_{q}{model}.kalign | cut -d':' -f2", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip()
