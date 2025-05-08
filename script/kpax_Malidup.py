@@ -29,10 +29,10 @@ for folder in folderlist:
     # algo q_pdb t_pdb -o entry.ali
     # further processing is required according to the output format
     if not os.path.exists(f'kpax_results/{q}/{t}_{q}.kalign'):
-        os.system(f'kpax {q_pdb} {t_pdb}')
+        os.system(f'kpax -nostdout {q_pdb} {t_pdb}')
         os.system(f'cp kpax_results/{q}/{t}_{q}.fasta {entry}.kpax.ali.fasta')
     if not os.path.exists(f'kpax_results/{q}/{t}_{q}_flex.kalign'):
-        os.system(f'kpax -flex {q_pdb} {t_pdb}')
+        os.system(f'kpax -flex -nostdout {q_pdb} {t_pdb}')
         os.system(f'cp kpax_results/{q}/{t}_{q}_flex.fasta {entry}.kpax_flex.ali.fasta')
     for model in ['kpax','kpax_flex']:
         os.system(f"sed '/^>/d' {entry}.{model}.ali.fasta > {entry}.{model}.ali")
