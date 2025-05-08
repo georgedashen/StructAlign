@@ -53,6 +53,11 @@ for folder in folderlist:
     os.system(f'python ../../accuracy.py {gt} {kpf} --verbose 0 --folder {folder} --query {q_pdb} --target {t_pdb} --model kpax_flex --outfile {entry}.accuracy')
     
     # run TM-align
+    if not os.path.exists(f'{entry}.tmscore'):
+            with open(f'{entry}.tmscore','w') as f:
+                csv.writer(f).writerow(['Folder', 'Query', 'Target', 'Model', 'RMSD', 'L_align', 'TM-score'])
+    os.system(f"sed -i '/kpax/d' {entry}.tmscore")
+
     for model in ['', '_flex']:
         try:
             if not os.path.exists(f'{entry}.{model}.tmalign') or overwrite:
@@ -75,9 +80,7 @@ for folder in folderlist:
         tmscore = subprocess.run(f"grep 'Tscore' kpax_results/{q}/{t}_{q}{model}.kalign | cut -d':' -f2", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip()
         rmsd = subprocess.run(f"grep 'RMSD-align' kpax_results/{q}/{t}_{q}{model}.kalign | cut -d':' -f2", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip()
         lalign = subprocess.run(f"grep 'Naligned' kpax_results/{q}/{t}_{q}{model}.kalign | cut -d':' -f2", stdout=subprocess.PIPE, shell=True, text=True).stdout.strip()
-        if not os.path.exists(f'{entry}.tmscore'):
-            with open(f'{entry}.tmscore','w') as f:
-                csv.writer(f).writerow(['Folder', 'Query', 'Target', 'Model', 'RMSD', 'L_align', 'TM-score'])
+
         with open(f'{entry}.tmscore','a') as f:
             csv.writer(f).writerow([folder, q_pdb, t_pdb, 'kpax'+model, rmsd, lalign, tmscore])
 
