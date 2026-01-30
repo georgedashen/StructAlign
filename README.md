@@ -3,7 +3,7 @@ This study benchmarks nine protein structure alignment algorithms on three downs
 
 The preprint version can be found on bioarxiv: [https://www.biorxiv.org/content/10.1101/2025.03.11.642719v1](https://www.biorxiv.org/content/10.1101/2025.03.11.642719v1)
 
-A version of this study has been accepted in BIBM 2025: [https://ieeexplore.ieee.org/document/11356623/keywords#keywords](https://ieeexplore.ieee.org/document/11356623/keywords#keywords)
+A version of this study has been accepted in BIBM 2025: [https://ieeexplore.ieee.org/document/11356623](https://ieeexplore.ieee.org/document/11356623)
 
 * We find large discrepancies between the alignment performance (e.g., TM-score, RMSD) and task accuracy performance of existing structure alignment tools.
 * We demonstrate that structure information is useful for tasks including phylogeny reconstruction and function inference that are previously tackled by sequence-based alignment methods.
@@ -373,3 +373,17 @@ An example output looks like this:
 ![time](img/time.png)
 
 The execution time is measured with `Elapsed (wall clock) time (h:mm:ss or m:ss)`, and the memory consumption is measured with `Maximum resident set size (kbytes)`.
+
+## Citation
+```
+@INPROCEEDINGS{11356623,
+  author={Chen, Zhuoyang and Zhang, Xuechen and Yu, Weichuan and Luo, Qiong},
+  booktitle={2025 IEEE International Conference on Bioinformatics and Biomedicine (BIBM)}, 
+  title={A Comparative Performance Study of Protein Structure Alignment Tools on Homology Detection with Biological Relevance}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={134-139},
+  keywords={Proteins;Deep learning;Measurement;Protein engineering;Accuracy;Three-dimensional displays;Codes;Libraries;Inference algorithms;Classification algorithms;Structural alignment;sequence alignment;partial alignment;protein function prediction;Foldseek},
+  doi={10.1109/BIBM66473.2025.11356623}}
+```
